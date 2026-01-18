@@ -107,6 +107,7 @@ class EnterNewPassword extends StatelessWidget {
                         ],
                       ),
                     );
+
                   },
                 ),
               ],

@@ -27,4 +27,12 @@ class AppIcons {
   final String walletIcon = "assets/icons/wallet_icon.svg";
   final String downArrowIcon = "assets/icons/down_arrow_icon.svg";
   final String priceTagIcon = "assets/icons/price_tag_icon.svg";
+
+  final String foodIcon = "assets/icons/food_icon.svg";
+  final String shoppingIcon = "assets/icons/shopping_icon.svg";
+  final String healthIcon = "assets/icons/health_icon.svg";
+  final String billsIcon = "assets/icons/bills_icon.svg";
+  final String entertainmentIcon = "assets/icons/entertainment_icon.svg";
+  final String transportIcon = "assets/icons/transport_icon.svg";
+  final String othersIcon = "assets/icons/others_icon.svg";
 }

@@ -1,7 +1,10 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/screens/auth/initialize/welcome.dart";
+import "package:expenzo/screens/widgets/sub_category_box.dart";
 import "package:expenzo/widgets/my_app_bar.dart";
+import "package:expenzo/widgets/my_button.dart";
 import "package:expenzo/widgets/my_text_field.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
@@ -75,6 +78,99 @@ class SetBudget extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: simpleText(R.strings.subCategoryText),
                 ),
+                getVerSpace(30),
+
+                SubCategoryBox(
+                  iconPath: R.icons.foodIcon,
+                  text: "Food",
+                  textSize: 13,
+                  textColor: R.colors.primaryColor,
+                  hintText: "340",
+                  iconSize: 30,
+                ),
+                getVerSpace(5),
+
+                SubCategoryBox(
+                  iconPath: R.icons.transportIcon,
+                  text: "Transport",
+                  textSize: 13,
+                  textColor: R.colors.transportColor,
+                  hintText: "210",
+                  iconSize: 30,
+                ),
+                getVerSpace(5),
+
+                SubCategoryBox(
+                  iconPath: R.icons.billsIcon,
+                  text: "Bills",
+                  textSize: 13,
+                  textColor: R.colors.billsColor,
+                  hintText: "350",
+                  iconSize: 29,
+                ),
+                getVerSpace(5),
+
+                SubCategoryBox(
+                  iconPath: R.icons.shoppingIcon,
+                  text: "Shopping",
+                  textSize: 13,
+                  textColor: R.colors.shoppingColor,
+                  hintText: "120",
+                  iconSize: 30,
+                ),
+                getVerSpace(5),
+
+                SubCategoryBox(
+                  iconPath: R.icons.healthIcon,
+                  text: "Health",
+                  textSize: 13,
+                  textColor: R.colors.healthColor,
+                  hintText: "120",
+                  iconSize: 29,
+                ),
+                getVerSpace(5),
+
+                SubCategoryBox(
+                  iconPath: R.icons.entertainmentIcon,
+                  text: "Entertainment",
+                  textSize: 12,
+                  textColor: R.colors.entertainmentColor,
+                  hintText: "50",
+                  iconSize: 35,
+                ),
+                getVerSpace(5),
+
+                SubCategoryBox(
+                  iconPath: R.icons.othersIcon,
+                  text: "Others",
+                  textSize: 13,
+                  textColor: R.colors.othersColor,
+                  hintText: "70",
+                  iconSize: 37,
+                ),
+                getVerSpace(20),
+                getSimpleRichText([
+                  TextSpan(
+                    text: "Note : ",
+                    style: R.textStyle.semiBoldInter().copyWith(
+                      color: R.colors.redColor,
+                      fontSize: 14,
+                    ),
+                  ),
+                  TextSpan(
+                    text: R.strings.noteForBudget,
+                    style: R.textStyle.regularInter().copyWith(
+                      color: R.colors.redColor,
+                    ),
+                  ),
+                ]),
+
+                getVerSpace(30),
+                MyButton(buttonText: "Set Budget", onTap: () {
+
+                  Constant.moveToNext(context, Welcome());
+                }),
+                getVerSpace(30),
               ],
             ),
           ),

@@ -7,5 +7,8 @@ class AppStrings {
   final String secondOpenerTextBold = "“Analyze more, Save more.”";
   final String welcomeText = "Hi 👋 Welcome to Expenzo";
   final String signInText = "Sign in to your account";
-  final String subCategoryText = "Here you can set sub budget for each category";
+  final String subCategoryText =
+      "Here you can set sub budget for each category";
+  final String noteForBudget =
+      "The sum of all the category budgets will be shown as the total budget automatically.";
 }

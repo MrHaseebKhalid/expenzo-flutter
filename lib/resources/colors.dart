@@ -14,4 +14,12 @@ class AppColors {
   final Color lightGreyColor = Color(0xFFEBEBEB);
   final Color hintTextColor = Color(0xFF5A5A5A);
   final Color iconColor = Color(0xFFA8A8A8);
+
+  final Color foodColor = Color(0xFF0F66EF);
+  final Color transportColor = Color(0xFFEC9400);
+  final Color billsColor = Color(0xFF8B5CF6);
+  final Color shoppingColor = Color(0xFFEC4899);
+  final Color healthColor = Color(0xFF00BCEA);
+  final Color entertainmentColor = Color(0xFFBB00FF);
+  final Color othersColor = Color(0xFF14B8A6);
 }
