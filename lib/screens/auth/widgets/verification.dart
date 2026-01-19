@@ -8,7 +8,7 @@ import "package:pinput/pinput.dart";
 import "../../../base/resizer/fetch_pixels.dart";
 import "../../../base/resizer/widget_utils.dart";
 import "../../../resources/resources.dart";
-import "../../../widgets/my_app_bar.dart";
+import "../../../widgets/my_app_bar1.dart";
 
 class Verification extends StatelessWidget {
   final Widget moveNextScreen;
@@ -30,8 +30,7 @@ class Verification extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                getVerSpace(40),
-                MyAppBar(),
+                MyAppBar1(),
                 getVerSpace(35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,

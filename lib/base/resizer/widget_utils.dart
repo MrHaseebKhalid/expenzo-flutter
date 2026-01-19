@@ -33,18 +33,11 @@ Widget simpleText(
   );
 }
 
-Widget getSimpleRichText(
-List<InlineSpan> children
-    ) {
+Widget getSimpleRichText(List<InlineSpan> children) {
   return RichText(
     textScaler: TextScaler.linear(FetchPixels.getTextScale()),
 
-      text: TextSpan(
-        style: R.textStyle.regularInter(),
-
-      children: children
-  )
-
+    text: TextSpan(style: R.textStyle.regularInter(), children: children),
   );
 }
 
@@ -62,13 +55,9 @@ Widget getTextFieldText(String text) {
   );
 }
 
-Widget getSignOptions(String svgImagePath,
-{
-  GestureTapCallback? onTap,
-}
-    ) {
+Widget getSignOptions(String svgImagePath, {GestureTapCallback? onTap}) {
   return GestureDetector(
-  onTap: onTap,
+    onTap: onTap,
     child: Container(
       padding: EdgeInsets.all(4),
       alignment: Alignment.center,
@@ -87,7 +76,8 @@ PinTheme getPinTheme({Color? color}) {
   return PinTheme(
     height: FetchPixels.getPixelHeight(55.74),
     width: FetchPixels.getPixelWidth(55.74),
-    textStyle: R.textStyle.semiBoldInter().copyWith(fontSize: 22,
+    textStyle: R.textStyle.semiBoldInter().copyWith(
+      fontSize: 22,
       color: R.colors.secondaryColor,
     ),
     decoration: BoxDecoration(
@@ -96,6 +86,29 @@ PinTheme getPinTheme({Color? color}) {
         width: (color == null) ? 2 : 3,
       ),
       borderRadius: BorderRadius.circular(FetchPixels.getPixelHeight(12.0)),
+    ),
+  );
+}
+
+Widget circularIcon({
+  required String iconPath,
+  required GestureTapCallback onTap,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+
+    child: Padding(
+      padding: EdgeInsets.all(FetchPixels.getPixelWidth(5)),
+      child: Container(
+        padding: EdgeInsets.all(FetchPixels.getPixelHeight(8)),
+        height: FetchPixels.getPixelHeight(40),
+        width: FetchPixels.getPixelWidth(40),
+        decoration: BoxDecoration(
+          color: R.colors.lightGreyColor,
+          shape: BoxShape.circle,
+        ),
+        child: SvgPicture.asset(iconPath),
+      ),
     ),
   );
 }

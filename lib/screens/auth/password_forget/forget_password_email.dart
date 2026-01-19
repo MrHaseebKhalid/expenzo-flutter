@@ -3,7 +3,7 @@ import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/screens/auth/password_forget/enter_new_password.dart";
 import "package:expenzo/screens/auth/widgets/verification.dart";
-import "package:expenzo/widgets/my_app_bar.dart";
+import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:expenzo/widgets/my_text_field.dart";
 import "package:flutter/material.dart";
@@ -28,8 +28,7 @@ class ForgetPasswordEmail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                getVerSpace(40),
-                MyAppBar(),
+                MyAppBar1(),
                 getVerSpace(35),
                 Padding(
                   padding: EdgeInsets.only(

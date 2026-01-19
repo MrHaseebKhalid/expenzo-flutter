@@ -4,7 +4,7 @@ import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/screens/auth/provider/auth_provider.dart";
 import "package:expenzo/screens/auth/sign%20in/sign_in.dart";
 import "package:expenzo/screens/auth/widgets/confirmation.dart";
-import "package:expenzo/widgets/my_app_bar.dart";
+import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
@@ -30,8 +30,7 @@ class EnterNewPassword extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                getVerSpace(40),
-                MyAppBar(),
+                MyAppBar1(),
                 getVerSpace(10),
                 Image.asset(R.images.enterNewPasswordImage),
                 getVerSpace(20),

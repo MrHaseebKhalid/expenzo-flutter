@@ -1,4 +1,7 @@
 class AppStrings {
+  final String firstName = "";
+  final String secondName = "";
+
   final String appName = "Expenzo";
   final String appLogoText = "YOUR FINANCE ASSISTANT";
   final String firstOpenerText = "Get a clear overview of all your Finances.";

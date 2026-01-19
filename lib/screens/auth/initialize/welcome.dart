@@ -1,4 +1,6 @@
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/screens/app/overview/overview.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
@@ -48,9 +50,7 @@ class Welcome extends StatelessWidget {
                 ]),
                 getVerSpace(25),
                 Padding(
-                  padding: EdgeInsets.only(
-                    left: FetchPixels.getPixelWidth(28)
-                  ),
+                  padding: EdgeInsets.only(left: FetchPixels.getPixelWidth(28)),
                   child: getSimpleRichText([
                     TextSpan(
                       text: "“",
@@ -59,7 +59,9 @@ class Welcome extends StatelessWidget {
                     TextSpan(
                       text:
                           "Discover Expenzo – take control of your finances. ",
-                      style: R.textStyle.regularInter().copyWith(fontSize: 14.5),
+                      style: R.textStyle.regularInter().copyWith(
+                        fontSize: 14.5,
+                      ),
                     ),
                     TextSpan(
                       text: "Track Smarter. Spend Better.”",
@@ -69,7 +71,12 @@ class Welcome extends StatelessWidget {
                 ),
 
                 getVerSpace(320),
-                MyButton(buttonText: "Let’s Go", onTap: () {}),
+                MyButton(
+                  buttonText: "Let’s Go",
+                  onTap: () {
+                    Constant.moveToNext(context, Overview());
+                  },
+                ),
               ],
             ),
           ),
