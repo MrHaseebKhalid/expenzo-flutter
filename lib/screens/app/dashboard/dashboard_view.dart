@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 
+import "../../../resources/resources.dart";
 import "../../../widgets/my_app_bar2.dart";
 
-class Overview extends StatelessWidget {
-  const Overview({super.key});
+class DashboardView extends StatelessWidget {
+  const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Overview extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         MyAppBar2(
-          titleText: "Hello, Mark",
+          titleText: R.strings.appName,
           isSettingsIcon: true,
           isBellIcon: true,
         ),

@@ -35,4 +35,12 @@ class AppIcons {
   final String entertainmentIcon = "assets/icons/entertainment_icon.svg";
   final String transportIcon = "assets/icons/transport_icon.svg";
   final String othersIcon = "assets/icons/others_icon.svg";
+
+  final String homeIcon = "assets/icons/home_icon.svg";
+  final String dashboardIcon = "assets/icons/dashboard_icon.svg";
+  final String analyticsIcon = "assets/icons/analytics_icon.svg";
+  final String profileIcon1 = "assets/icons/profile_icon1.svg";
+  final String plusIcon = "assets/icons/plus_icon.svg";
+
+
 }
