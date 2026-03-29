@@ -42,5 +42,6 @@ class AppIcons {
   final String profileIcon1 = "assets/icons/profile_icon1.svg";
   final String plusIcon = "assets/icons/plus_icon.svg";
 
-
+  final String addExpenseIcon = "assets/icons/add_expense_icon.svg";
+  final String setBudgetIcon = "assets/icons/set_budget_icon.svg";
 }
