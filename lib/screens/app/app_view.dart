@@ -8,8 +8,6 @@ import "package:expenzo/screens/app/widgets/floating_action_button.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "../../base/resizer/fetch_pixels.dart";
-import "../../resources/resources.dart";
-import "../../widgets/my_app_bar2.dart";
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
@@ -31,11 +29,14 @@ class AppView extends StatelessWidget {
               horizontal: FetchPixels.getPixelWidth(25),
             ),
             child: Selector<AppProvider, int>(
-              selector: (context, appProvider ) => appProvider.currentPageIndex,
+              selector: (context, appProvider) => appProvider.currentPageIndex,
               builder: (context, value, child) => IndexedStack(
                 index: appProvider.currentPageIndex,
-                children: [Overview(), DashboardView(), AnalyticsView(),
-                ProfileView(),
+                children: [
+                  Overview(),
+                  DashboardView(),
+                  AnalyticsView(),
+                  ProfileView(),
                 ],
               ),
             ),
