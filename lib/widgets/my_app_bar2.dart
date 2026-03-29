@@ -38,7 +38,9 @@ class MyAppBar2 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   if (isSettingsIcon)
-                  circularIcon(iconPath: R.icons.settingsIcon, onTap: () {}),
+                  circularIcon(iconPath: R.icons.settingsIcon, onTap: () {
+                    Navigator.of(context).pop();
+                  }),
                   getHorSpace(7),
                   if (isBellIcon)
                   circularIcon(

@@ -29,6 +29,7 @@ class MyBottomAppBar extends StatelessWidget {
               spacing: 15,
               children: [
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     if (appProvider.currentPageIndex != 0) {
                       appProvider.changePageIndex(0);
@@ -53,6 +54,7 @@ class MyBottomAppBar extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     if (appProvider.currentPageIndex != 1) {
                       appProvider.changePageIndex(1);
@@ -83,6 +85,7 @@ class MyBottomAppBar extends StatelessWidget {
               spacing: 15,
               children: [
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     if (appProvider.currentPageIndex != 2) {
                       appProvider.changePageIndex(2);
@@ -107,6 +110,7 @@ class MyBottomAppBar extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     if (appProvider.currentPageIndex != 3) {
                       appProvider.changePageIndex(3);

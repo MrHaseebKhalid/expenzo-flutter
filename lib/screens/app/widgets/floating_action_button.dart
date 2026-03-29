@@ -4,12 +4,14 @@ import "package:flutter_svg/svg.dart";
 import "../../../resources/resources.dart";
 
 class MyFloatingActionButton extends StatelessWidget {
-  const MyFloatingActionButton({super.key});
+  final VoidCallback onTap;
+
+  const MyFloatingActionButton({required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: onTap,
       backgroundColor: R.colors.primaryColor,
       shape: CircleBorder(),
       child: SvgPicture.asset(R.icons.plusIcon),
