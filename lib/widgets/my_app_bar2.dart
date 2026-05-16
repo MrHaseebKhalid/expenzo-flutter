@@ -1,9 +1,10 @@
+import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:flutter/material.dart";
 
 import "../resources/resources.dart";
 
-class MyAppBar2 extends StatelessWidget {
+class MyAppBar2 extends StatelessWidget implements PreferredSizeWidget {
   final String titleText;
   final double? titleFontSize;
   final bool isSettingsIcon;
@@ -18,40 +19,31 @@ class MyAppBar2 extends StatelessWidget {
   });
 
   @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        getVerSpace(35),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            simpleText(
-              titleText,
-              style: R.textStyle.boldInter().copyWith(
-                color: R.colors.primaryColor,
-                fontSize: titleFontSize ?? 21,
-              ),
-            ),
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  if (isSettingsIcon)
-                  circularIcon(iconPath: R.icons.settingsIcon, onTap: () {
-                    Navigator.of(context).pop();
-                  }),
-                  getHorSpace(7),
-                  if (isBellIcon)
-                  circularIcon(
-                    iconPath: R.icons.notificationBellIcon,
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-          ],
+    return AppBar(
+      backgroundColor: R.colors.transparent,
+      leadingWidth: 0.0,
+      leading: getVerSpace(0),
+      title: simpleText(
+        titleText,
+        style: R.textStyle.boldInter().copyWith(
+          color: R.colors.primaryColor,
+          fontSize: titleFontSize ?? 21,
         ),
+      ),
+      actionsPadding: EdgeInsets.only(
+        right: FetchPixels.getPixelWidth(20),
+      ),
+      actions: [
+        if (isSettingsIcon)
+          circularIcon(iconPath: R.icons.settingsIcon, onTap: () {}),
+          if(isSettingsIcon & isBellIcon)
+          getHorSpace(10),
+        if (isBellIcon)
+          circularIcon(iconPath: R.icons.notificationBellIcon, onTap: () {}),
       ],
     );
   }

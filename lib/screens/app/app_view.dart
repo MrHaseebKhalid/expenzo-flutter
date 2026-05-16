@@ -1,3 +1,4 @@
+import "package:expenzo/resources/resources.dart";
 import "package:expenzo/screens/app/analytics/analytics_view.dart";
 import "package:expenzo/screens/app/dashboard/dashboard_view.dart";
 import "package:expenzo/screens/app/overview/overview.dart";
@@ -6,10 +7,11 @@ import "package:expenzo/screens/app/provider/app_provider.dart";
 import "package:expenzo/screens/app/widgets/bottom_app_bar.dart";
 import "package:expenzo/screens/app/widgets/floating_action_button.dart";
 import "package:expenzo/screens/app/widgets/semi_circle.dart";
+import "package:expenzo/screens/auth/provider/auth_provider.dart";
+import "package:expenzo/widgets/my_app_bar2.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "../../base/resizer/fetch_pixels.dart";
-import "../../resources/resources.dart";
 
 class AppView extends StatefulWidget {
   const AppView({super.key});
@@ -21,10 +23,50 @@ class AppView extends StatefulWidget {
 class _AppViewState extends State<AppView> {
   bool isOpen = false;
 
+  PreferredSizeWidget _buildResponsiveAppBar(BuildContext context, int index) {
+    final screenWidth = FetchPixels.width;
+    final titleFontSize = screenWidth < 360 ? 18.0 : 21.0;
+
+    switch (index) {
+      case 0:
+        return MyAppBar2(
+          titleText: "Hello, ${AuthProvider().userFirstName}",
+          titleFontSize: titleFontSize,
+          isBellIcon: true,
+          isSettingsIcon: true,
+        );
+      case 1:
+        return MyAppBar2(
+          titleText: R.strings.appName,
+          titleFontSize: titleFontSize,
+          isSettingsIcon: true,
+          isBellIcon: true,
+        );
+      case 2:
+        return MyAppBar2(
+          titleText: R.strings.appName,
+          titleFontSize: titleFontSize,
+          isBellIcon: true,
+          isSettingsIcon: true,
+        );
+      case 3:
+      default:
+        return MyAppBar2(
+          titleText: "Profile",
+          titleFontSize: titleFontSize,
+          isSettingsIcon: true,
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    var appProvider = context.read<AppProvider>();
+    final currentPageIndex = context.select<AppProvider, int>(
+      (appProvider) => appProvider.currentPageIndex,
+    );
+
     return Scaffold(
+      appBar: _buildResponsiveAppBar(context, currentPageIndex),
       resizeToAvoidBottomInset: false,
       floatingActionButton: MyFloatingActionButton(
         isOpen: isOpen,
@@ -45,14 +87,13 @@ class _AppViewState extends State<AppView> {
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: FetchPixels.getPixelHeight(20),
                     horizontal: FetchPixels.getPixelWidth(25),
                   ),
                   child: Selector<AppProvider, int>(
                     selector: (context, appProvider) =>
                         appProvider.currentPageIndex,
                     builder: (context, value, child) => IndexedStack(
-                      index: appProvider.currentPageIndex,
+                      index: value,
                       children: [
                         Overview(),
                         DashboardView(),

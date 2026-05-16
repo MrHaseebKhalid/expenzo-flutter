@@ -12,11 +12,7 @@ class DashboardView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        MyAppBar2(
-          titleText: R.strings.appName,
-          isSettingsIcon: true,
-          isBellIcon: true,
-        ),
+
       ],
     );
   }

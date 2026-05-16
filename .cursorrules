@@ -1,0 +1,18 @@
+Use Flutter best practices.
+Use MVVM architecture.
+Use Provider for state management.
+Separate UI, business logic, and data layers.
+Use reusable widgets.
+Avoid giant widget files.
+Keep widgets under 300 lines when possible.
+Use responsive layouts.
+Use meaningful naming conventions.
+Avoid duplicate code.
+Prefer composition over inheritance.
+Use clean architecture principles.
+Keep folder structure organized.
+Use const constructors whenever possible.
+Optimize rebuilds for performance.
+Do not create unnecessary abstractions.
+Generate production-quality Flutter code.
+Before creating new files, check existing architecture first.

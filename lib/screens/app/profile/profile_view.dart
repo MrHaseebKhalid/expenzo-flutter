@@ -10,7 +10,7 @@ class ProfileView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
-      children: [MyAppBar2(titleText: "Profile", isSettingsIcon: true)],
+      children: [],
     );
   }
 }

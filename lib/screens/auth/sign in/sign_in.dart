@@ -104,9 +104,12 @@ class SignIn extends StatelessWidget {
                 ),
 
                 getVerSpace(40),
-                MyButton(buttonText: "Sign in", onTap: () {
-                  Constant.moveToNext(context, InitialDetails());
-                }),
+                MyButton(
+                  buttonText: "Sign in",
+                  onTap: () {
+                    Constant.moveToNext(context, InitialDetails());
+                  },
+                ),
 
                 getVerSpace(50),
                 Row(
@@ -152,8 +155,8 @@ class SignIn extends StatelessWidget {
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: FetchPixels.getPixelHeight(15),
-                            horizontal: FetchPixels.getPixelWidth(5)
+                          vertical: FetchPixels.getPixelHeight(15),
+                          horizontal: FetchPixels.getPixelWidth(5),
                         ),
 
                         child: simpleText(

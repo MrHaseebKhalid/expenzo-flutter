@@ -30,6 +30,7 @@ class MyAppBar1 extends StatelessWidget {
             style: R.textStyle.boldInter().copyWith(
               color: R.colors.primaryColor,
               fontSize: titleFontSize ?? 18,
+              
             ),
             ),
           ],

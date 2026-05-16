@@ -12,6 +12,7 @@ class AppColors {
   final Color whiteTextColor = Color(0xFFF3F3F3);
   final Color redColor = Color(0xFFFF3700);
   final Color lightGreyColor = Color(0xFFEBEBEB);
+  final Color darkGreyColor = Color(0xFFB6B5B5);
   final Color hintTextColor = Color(0xFF5A5A5A);
   final Color iconColor = Color(0xFFA8A8A8);
 

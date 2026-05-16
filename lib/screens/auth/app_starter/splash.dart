@@ -3,6 +3,7 @@ import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/screens/auth/app_starter/opener.dart";
 import "package:flutter/material.dart";
+
 import "../../../resources/resources.dart";
 
 class SplashScreen extends StatefulWidget {
@@ -13,12 +14,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3), () async{
+    Future.delayed(Duration(seconds: 3), () async {
       await Constant.moveToNext(context, FirstOpener());
-    },);
+    });
     super.initState();
   }
 
@@ -39,20 +39,25 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: FetchPixels.getPixelWidth(270),
                   height: FetchPixels.getPixelHeight(200),
                 ),
-              Image.asset(R.images.appLogo, scale: FetchPixels.getScale(),
-                height: FetchPixels.getPixelHeight(200),
-              ),
+                Image.asset(
+                  R.images.appLogo,
+                  scale: FetchPixels.getScale(),
+                  height: FetchPixels.getPixelHeight(200),
+                ),
                 Positioned(
-                    bottom: 5,
-                    right: 7,
-                    child: simpleText(R.strings.appLogoText,
+                  bottom: 5,
+                  right: 7,
+
+                  child: simpleText(
+                    R.strings.appLogoText,
+
                     style: R.textStyle.boldInter().copyWith(
                       color: R.colors.secondaryColor,
                       fontSize: 13,
                       letterSpacing: 3,
-
-                    )
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
             getVerSpace(120),

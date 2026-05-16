@@ -1,10 +1,11 @@
 import "package:flutter/material.dart";
 
 class AuthProvider with ChangeNotifier {
-
   late PageController openerPageController;
   int currentOpenerValue = 0;
   bool openerCondition = true;
+  String userFirstName = "Mark";
+  String userSecondName = "Rober";
 
   bool eyeButton1 = true;
   bool eyeButton2 = true;
@@ -17,7 +18,6 @@ class AuthProvider with ChangeNotifier {
   bool eyeButtonAllow3 = false;
   bool eyeButtonAllow4 = false;
   bool eyeButtonAllow5 = false;
-
 
   void update() {
     notifyListeners();
@@ -69,10 +69,9 @@ class AuthProvider with ChangeNotifier {
           currentOpenerValue = 0;
         }
         Future.delayed(Duration(milliseconds: 700), () {
-        update();
-        },);
+          update();
+        });
       });
-
     }
   }
 }
