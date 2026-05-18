@@ -1,7 +1,9 @@
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
-import "package:expenzo/screens/app/widgets/blob_donut_chart.dart";
+import "package:expenzo/data/expense_data.dart";
+import "package:expenzo/screens/app/widgets/donut_chart_config.dart";
+import "package:expenzo/screens/app/widgets/expense_donut_chart.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
 
@@ -113,9 +115,10 @@ class Overview extends StatelessWidget {
               style: R.textStyle.semiBoldInter().copyWith(fontSize: 11),
             ),
             getHorSpace(5),
-            Icon(Icons.info_outline_rounded,
-            color: R.colors.darkGreyColor,
-            size: FetchPixels.getPixelHeight(17),
+            Icon(
+              Icons.info_outline_rounded,
+              color: R.colors.darkGreyColor,
+              size: FetchPixels.getPixelHeight(17),
             ),
             getHorSpace(10),
 
@@ -139,6 +142,10 @@ class Overview extends StatelessWidget {
           ],
         ),
         getVerSpace(10),
+        ExpenseDonutChart(
+          segments: expenseDataRepository.overviewDonutSegments,
+          config: const DonutChartConfig(),
+        ),
       ],
     );
   }

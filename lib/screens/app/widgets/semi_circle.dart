@@ -1,10 +1,11 @@
+import "dart:math" as math;
+
 import "package:expenzo/base/resizer/constant.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
+
 import "../../../base/resizer/fetch_pixels.dart";
 import "../../../base/resizer/widget_utils.dart";
-import "dart:math" as math;
-
 import "../../../resources/resources.dart";
 
 class SemiCircle extends StatefulWidget {
