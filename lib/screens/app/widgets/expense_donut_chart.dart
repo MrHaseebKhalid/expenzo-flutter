@@ -11,7 +11,7 @@ class ExpenseDonutChart extends StatefulWidget {
     super.key,
     required this.segments,
     this.config = const DonutChartConfig(),
-    this.size = 260.0,
+    this.size = 200.0,
   });
 
   final List<DonutSegment> segments;

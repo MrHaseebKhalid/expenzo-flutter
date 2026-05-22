@@ -1,7 +1,7 @@
 import "package:expenzo/resources/resources.dart";
 import "package:expenzo/screens/app/analytics/analytics_view.dart";
 import "package:expenzo/screens/app/dashboard/dashboard_view.dart";
-import "package:expenzo/screens/app/overview/overview.dart";
+import "package:expenzo/screens/app/overview/overview_view.dart";
 import "package:expenzo/screens/app/profile/profile_view.dart";
 import "package:expenzo/screens/app/provider/app_provider.dart";
 import "package:expenzo/screens/app/widgets/bottom_app_bar.dart";
@@ -11,6 +11,7 @@ import "package:expenzo/screens/auth/provider/auth_provider.dart";
 import "package:expenzo/widgets/my_app_bar2.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+
 import "../../base/resizer/fetch_pixels.dart";
 
 class AppView extends StatefulWidget {

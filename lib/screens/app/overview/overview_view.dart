@@ -1,11 +1,13 @@
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
-import "package:expenzo/resources/resources.dart";
 import "package:expenzo/data/expense_data.dart";
+import "package:expenzo/resources/resources.dart";
+import "package:expenzo/screens/app/overview/widgets/donut_chart_pill.dart";
 import "package:expenzo/screens/app/widgets/donut_chart_config.dart";
 import "package:expenzo/screens/app/widgets/expense_donut_chart.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
+import "package:flutter_svg/flutter_svg.dart";
 
 class Overview extends StatelessWidget {
   const Overview({super.key});
@@ -19,9 +21,15 @@ class Overview extends StatelessWidget {
         getVerSpace(10),
         Row(
           children: [
-            simpleText("This month"),
+            simpleText(
+              "This month",
+              style: R.textStyle.mediumInter().copyWith(fontSize: 15),
+            ),
             Icon(Icons.keyboard_arrow_down_rounded),
-            simpleText("  Till today — 28/01/25"),
+            simpleText(
+              "  Till today — 28/01/25",
+              style: R.textStyle.mediumInter().copyWith(fontSize: 15),
+            ),
           ],
         ),
         getVerSpace(5),
@@ -115,10 +123,13 @@ class Overview extends StatelessWidget {
               style: R.textStyle.semiBoldInter().copyWith(fontSize: 11),
             ),
             getHorSpace(5),
-            Icon(
-              Icons.info_outline_rounded,
-              color: R.colors.darkGreyColor,
-              size: FetchPixels.getPixelHeight(17),
+            SvgPicture.asset(
+              R.icons.infoIcon,
+              colorFilter: ColorFilter.mode(
+                R.colors.darkGreyColor,
+                BlendMode.srcIn,
+              ),
+              height: FetchPixels.getPixelHeight(16),
             ),
             getHorSpace(10),
 
@@ -141,10 +152,78 @@ class Overview extends StatelessWidget {
             ),
           ],
         ),
-        getVerSpace(10),
+        getVerSpace(25),
         ExpenseDonutChart(
           segments: expenseDataRepository.overviewDonutSegments,
           config: const DonutChartConfig(),
+        ),
+
+        getVerSpace(20),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: FetchPixels.getPixelHeight(15),
+              children: [
+                DonutChartPill(text: "Food", color: R.colors.foodColor),
+                DonutChartPill(text: "Shopping", color: R.colors.shoppingColor),
+              ],
+            ),
+            getHorSpace(68),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: FetchPixels.getPixelHeight(15),
+              children: [
+                DonutChartPill(
+                  text: "Transport",
+                  color: R.colors.transportColor,
+                ),
+                DonutChartPill(text: "Health", color: R.colors.healthColor),
+                DonutChartPill(text: "Others", color: R.colors.othersColor),
+              ],
+            ),
+            getHorSpace(40),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: FetchPixels.getPixelHeight(15),
+              children: [
+                DonutChartPill(text: "Bills", color: R.colors.billsColor),
+
+                DonutChartPill(
+                  text: "Entertainment",
+                  color: R.colors.entertainmentColor,
+                ),
+              ],
+            ),
+          ],
+        ),
+        getVerSpace(10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            simpleText(
+              "Expense Pie Graph",
+              style: R.textStyle.boldInter().copyWith(
+                fontSize: 12,
+                color: R.colors.primaryColor,
+              ),
+            ),
+            getHorSpace(5),
+            SvgPicture.asset(
+              R.icons.infoIcon,
+              colorFilter: ColorFilter.mode(
+                R.colors.primaryColor,
+                BlendMode.srcIn,
+              ),
+              height: FetchPixels.getPixelHeight(16),
+            ),
+          ],
         ),
       ],
     );
