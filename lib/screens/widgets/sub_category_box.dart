@@ -62,7 +62,9 @@ class SubCategoryBox extends StatelessWidget {
             prefixSvgIconColor: R.colors.iconColor,
             prefixSvgIconSize: 22,
             showText: "e.g., \$$hintText",
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
         ],
       ),

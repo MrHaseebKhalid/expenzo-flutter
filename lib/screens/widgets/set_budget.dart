@@ -46,7 +46,9 @@ class SetBudget extends StatelessWidget {
                   prefixSvgIconColor: R.colors.iconColor,
                   prefixSvgIconSize: 22,
                   showText: "e.g., \$3400",
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
 
                 getVerSpace(40),

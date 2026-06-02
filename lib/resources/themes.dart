@@ -5,6 +5,13 @@ class AppThemes {
   final lightTheme = ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: R.colors.bgColor,
+    appBarTheme: AppBarTheme(
+      backgroundColor: R.colors.bgColor,
+      shadowColor: R.colors.transparent,
+      foregroundColor: R.colors.transparent,
+      surfaceTintColor: R.colors.transparent,
+    ),
+
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: R.colors.primaryColor,
       selectionHandleColor: R.colors.primaryColor,

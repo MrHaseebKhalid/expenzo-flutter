@@ -1,5 +1,4 @@
 import "package:expenzo/base/resizer/constant.dart";
-import "package:expenzo/screens/auth/password_forget/enter_new_password.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";

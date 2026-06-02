@@ -1,12 +1,102 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/data/expense_data.dart";
 import "package:expenzo/resources/resources.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
+
+  Widget _buildTransactionItem(
+    String title,
+    String category,
+    String amount,
+    String date,
+    Color color,
+  ) {
+    return MyContainer(
+      padding: EdgeInsets.symmetric(
+        horizontal: FetchPixels.getPixelWidth(15),
+        vertical: FetchPixels.getPixelHeight(15),
+      ),
+      margin: EdgeInsets.only(bottom: FetchPixels.getPixelHeight(12)),
+      child: Row(
+        children: [
+          Container(
+            width: FetchPixels.getPixelWidth(45),
+            height: FetchPixels.getPixelHeight(45),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: Constant.getOpacityValues(15)),
+              borderRadius: BorderRadius.circular(
+                FetchPixels.getPixelWidth(12),
+              ),
+            ),
+            child: Center(
+              child: simpleText(
+                category[0],
+                style: R.textStyle.boldInter().copyWith(
+                  fontSize: 18,
+                  color: color,
+                ),
+              ),
+            ),
+          ),
+          getHorSpace(12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                simpleText(
+                  title,
+                  style: R.textStyle.semiBoldInter().copyWith(fontSize: 14),
+                ),
+                getVerSpace(4),
+                simpleText(
+                  category,
+                  style: R.textStyle.mediumInter().copyWith(
+                    fontSize: 12,
+                    color: R.colors.dimTextColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              simpleText(
+                amount,
+                style: R.textStyle.semiBoldInter().copyWith(
+                  fontSize: 14,
+                  color: R.colors.redColor,
+                ),
+              ),
+              getVerSpace(4),
+              simpleText(
+                date,
+                style: R.textStyle.mediumInter().copyWith(
+                  fontSize: 11,
+                  color: R.colors.dimTextColor,
+                ),
+              ),
+            ],
+          ),
+          getHorSpace(8),
+          Icon(
+            Icons.arrow_forward_ios,
+            size: FetchPixels.getPixelHeight(14),
+            color: R.colors.dimTextColor,
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _navigateToExpensesScreen(BuildContext context) {
+    // TODO: Navigate to expenses screen
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -186,84 +276,215 @@ class DashboardView extends StatelessWidget {
         ),
         getVerSpace(30),
 
-        MyContainer(
-          padding: EdgeInsets.symmetric(
-            horizontal: FetchPixels.getPixelWidth(20),
-            vertical: FetchPixels.getPixelHeight(20),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  // Gray track shadow/glow effect underneath
-                  Container(
-                    width: FetchPixels.getPixelWidth(140),
-                    height: FetchPixels.getPixelHeight(140),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 10.0,
-                      color: R.colors.whiteColor
-                      ),
-                      shape: BoxShape.circle,
-                      
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(
-                            alpha: Constant.getOpacityValues(10),
-                          ),
-                          offset: Offset(10, 0),
-                          blurRadius: 15,
-                          spreadRadius: 5,
-                        ),
-                        BoxShadow(
-                          color: Colors.black.withValues(
-                            alpha: Constant.getOpacityValues(10),
-                          ),
-                          offset: Offset(-10, 0),
-                          blurRadius: 15,
-                          spreadRadius: 5,
-                        ),
-                      ],
+        // Expenses Section
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                simpleText(
+                  "Expenses",
+                  style: R.textStyle.semiBoldInter().copyWith(fontSize: 18),
+                ),
+                GestureDetector(
+                  onTap: () => _navigateToExpensesScreen(context),
+                  child: simpleText(
+                    "see more",
+                    style: R.textStyle.mediumInter().copyWith(
+                      fontSize: 14,
+                      color: R.colors.primaryColor,
                     ),
                   ),
-                  // The Actual Progress Ring
-                  //     SizedBox(
-                  //       width: FetchPixels.getPixelWidth(100),
-                  //       height: FetchPixels.getPixelHeight(100),
-                  //       child: const CircularProgressIndicator(
-                  //         value: 0.78,
-                  //         strokeWidth: 12, // Controls thickness of the ring
-                  //         strokeCap: StrokeCap.round, // Makes the bar ends round
-                  //         backgroundColor: Colors.white, // Hollow center/track fill
-                  //         valueColor: AlwaysStoppedAnimation<Color>(
-                  //           Color(0xFF1E60E2),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     // Percentage Text Center Layer
-                  //     Text(
-                  //       '${(100).toInt()}%',
-                  //       style: TextStyle(
-                  //         fontSize: FetchPixels.getPixelHeight(20),
-                  //         fontWeight: FontWeight.w600,
-                  //         color: Colors.black,
-                  //       ),
-                  //     ),
-                ],
-              ),
-              SizedBox(height: FetchPixels.getPixelHeight(16)),
-              // Bottom Label Text
-              Text(
-                'Food',
-                style: TextStyle(
-                  fontSize: FetchPixels.getPixelHeight(18),
-                  fontWeight: FontWeight.w600,
-                  color: R.colors.primaryColor,
                 ),
+              ],
+            ),
+            getVerSpace(15),
+            SizedBox(
+              height: FetchPixels.getPixelHeight(160),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount:
+                    StaticExpenseDataRepository
+                        .instance
+                        .overviewDonutSegments
+                        .length +
+                    1,
+                itemBuilder: (context, index) {
+                  if (index ==
+                      StaticExpenseDataRepository
+                          .instance
+                          .overviewDonutSegments
+                          .length) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        right: FetchPixels.getPixelWidth(15),
+                      ),
+                      child: GestureDetector(
+                        onTap: () => _navigateToExpensesScreen(context),
+                        child: MyContainer(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: FetchPixels.getPixelWidth(15),
+                            vertical: FetchPixels.getPixelHeight(15),
+                          ),
+                          margin: EdgeInsets.zero,
+                          containerWidth: FetchPixels.getPixelWidth(110),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: FetchPixels.getPixelWidth(50),
+                                height: FetchPixels.getPixelHeight(50),
+                                decoration: BoxDecoration(
+                                  color: R.colors.primaryColor.withValues(
+                                    alpha: Constant.getOpacityValues(10),
+                                  ),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: FetchPixels.getPixelHeight(20),
+                                  color: R.colors.primaryColor,
+                                ),
+                              ),
+                              getVerSpace(10),
+                              simpleText(
+                                "See more",
+                                style: R.textStyle.mediumInter().copyWith(
+                                  fontSize: 13,
+                                  color: R.colors.primaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
+                  final segment = StaticExpenseDataRepository
+                      .instance
+                      .overviewDonutSegments[index];
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      right: FetchPixels.getPixelWidth(15),
+                    ),
+                    child: MyContainer(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: FetchPixels.getPixelWidth(15),
+                        vertical: FetchPixels.getPixelHeight(15),
+                      ),
+                      margin: EdgeInsets.zero,
+                      containerWidth: FetchPixels.getPixelWidth(110),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              SizedBox(
+                                width: FetchPixels.getPixelWidth(80),
+                                height: FetchPixels.getPixelHeight(80),
+                                child: CircularProgressIndicator(
+                                  value: 0.78,
+                                  strokeWidth: 8,
+                                  strokeCap: StrokeCap.round,
+                                  backgroundColor: R.colors.lightGreyColor,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    segment.color,
+                                  ),
+                                ),
+                              ),
+                              simpleText(
+                                "78%",
+                                style: R.textStyle.boldInter().copyWith(
+                                  fontSize: 14,
+                                  color: R.colors.textColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          getVerSpace(10),
+                          simpleText(
+                            segment.label,
+                            style: R.textStyle.mediumInter().copyWith(
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
+        getVerSpace(30),
+
+        // Transactions Section
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                simpleText(
+                  "Transactions",
+                  style: R.textStyle.semiBoldInter().copyWith(fontSize: 18),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: simpleText(
+                    "see more",
+                    style: R.textStyle.mediumInter().copyWith(
+                      fontSize: 14,
+                      color: R.colors.primaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            getVerSpace(8),
+            simpleText(
+              "Recents",
+              style: R.textStyle.mediumInter().copyWith(
+                fontSize: 14,
+                color: R.colors.dimTextColor,
+              ),
+            ),
+            getVerSpace(15),
+            _buildTransactionItem(
+              "March Electricity bill",
+              "Bills",
+              "\$120",
+              "28/04/25",
+              R.colors.billsColor,
+            ),
+            _buildTransactionItem(
+              "McDonald's Pizza",
+              "Food",
+              "\$25",
+              "27/04/25",
+              R.colors.foodColor,
+            ),
+            _buildTransactionItem(
+              "Travel to San Francisco",
+              "Transport",
+              "\$85",
+              "26/04/25",
+              R.colors.transportColor,
+            ),
+            _buildTransactionItem(
+              "March Wifi bill",
+              "Bills",
+              "\$60",
+              "25/04/25",
+              R.colors.billsColor,
+            ),
+            getVerSpace(30),
+          ],
         ),
       ],
     );

@@ -57,7 +57,9 @@ class EnterNewPassword extends StatelessWidget {
                     authProvider.changeEyeIcon(number: 2);
                   },
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(20),
                 getTextFieldText("Confirm Password"),
@@ -79,7 +81,9 @@ class EnterNewPassword extends StatelessWidget {
                     authProvider.changeEyeIcon(number: 3);
                   },
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(40),
                 MyButton(

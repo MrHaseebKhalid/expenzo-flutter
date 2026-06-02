@@ -55,7 +55,9 @@ class ForgetPasswordEmail extends StatelessWidget {
                   prefixSvgIconPath: R.icons.mailIcon,
                   onTapEyeButton: () {},
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
 
                 getVerSpace(50),

@@ -55,7 +55,9 @@ class SignIn extends StatelessWidget {
                   showText: "example@gmail.com",
                   prefixSvgIconPath: R.icons.mailIcon,
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(30),
                 getTextFieldText("Password"),
@@ -77,7 +79,9 @@ class SignIn extends StatelessWidget {
                     authProvider.changeEyeIcon(number: 1);
                   },
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(5),
 

@@ -74,7 +74,9 @@ class SignUp extends StatelessWidget {
                           prefixSvgIconColor: R.colors.iconColor,
                           prefixSvgIconSize: 23,
                           context: context,
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                         ),
                       ],
                     ),
@@ -91,7 +93,9 @@ class SignUp extends StatelessWidget {
                           prefixSvgIconColor: R.colors.iconColor,
                           prefixSvgIconSize: 23,
                           context: context,
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                         ),
                       ],
                     ),
@@ -104,7 +108,9 @@ class SignUp extends StatelessWidget {
                   showText: "example@gmail.com",
                   prefixSvgIconPath: R.icons.mailIcon,
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(20),
                 getTextFieldText("Create Password"),
@@ -126,7 +132,9 @@ class SignUp extends StatelessWidget {
                     authProvider.changeEyeIcon(number: 4);
                   },
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(20),
                 getTextFieldText("Confirm Password"),
@@ -148,7 +156,9 @@ class SignUp extends StatelessWidget {
                     authProvider.changeEyeIcon(number: 5);
                   },
                   context: context,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                 ),
                 getVerSpace(30),
                 MyButton(
