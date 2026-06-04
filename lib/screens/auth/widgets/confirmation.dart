@@ -11,13 +11,13 @@ class Confirmation extends StatelessWidget {
   final String mainText;
   final List<InlineSpan> subRichTextChildren;
   final String buttonText;
-  final Widget moveNextScreen;
+  final String nextRoute;
 
   const Confirmation({
     super.key,
     required this.mainText,
     required this.buttonText,
-    required this.moveNextScreen,
+    required this.nextRoute,
     required this.subRichTextChildren,
   });
 
@@ -37,9 +37,7 @@ class Confirmation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 getVerSpace(120),
-                SvgPicture.asset(R.icons.tickIcon,
-                height: 90,
-                ),
+                SvgPicture.asset(R.icons.tickIcon, height: 90),
 
                 getVerSpace(30),
                 simpleText(
@@ -47,10 +45,9 @@ class Confirmation extends StatelessWidget {
                   style: R.textStyle.semiBoldInter().copyWith(fontSize: 19),
                 ),
                 getVerSpace(20),
-                simpleText(mainText,
-                style: R.textStyle.mediumInter().copyWith(
-                  fontSize: 14
-                )
+                simpleText(
+                  mainText,
+                  style: R.textStyle.mediumInter().copyWith(fontSize: 14),
                 ),
                 getVerSpace(10),
                 getSimpleRichText(subRichTextChildren),
@@ -58,7 +55,7 @@ class Confirmation extends StatelessWidget {
                 MyButton(
                   buttonText: buttonText,
                   onTap: () {
-                    Constant.moveToNext(context, moveNextScreen);
+                    Constant.navigateToRoute(context, nextRoute);
                   },
                 ),
               ],

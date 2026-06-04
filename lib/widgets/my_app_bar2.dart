@@ -1,3 +1,4 @@
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:flutter/material.dart";
@@ -34,16 +35,23 @@ class MyAppBar2 extends StatelessWidget implements PreferredSizeWidget {
           fontSize: titleFontSize ?? 21,
         ),
       ),
-      actionsPadding: EdgeInsets.only(
-        right: FetchPixels.getPixelWidth(20),
-      ),
+      actionsPadding: EdgeInsets.only(right: FetchPixels.getPixelWidth(20)),
       actions: [
         if (isSettingsIcon)
-          circularIcon(iconPath: R.icons.settingsIcon, onTap: () {}),
-          if(isSettingsIcon & isBellIcon)
-          getHorSpace(10),
+          circularIcon(
+            iconPath: R.icons.settingsIcon,
+            onTap: () {
+              Constant.navigateToRoute(context, '/settings');
+            },
+          ),
+        if (isSettingsIcon && isBellIcon) getHorSpace(10),
         if (isBellIcon)
-          circularIcon(iconPath: R.icons.notificationBellIcon, onTap: () {}),
+          circularIcon(
+            iconPath: R.icons.notificationBellIcon,
+            onTap: () {
+              Constant.navigateToRoute(context, '/notifications');
+            },
+          ),
       ],
     );
   }

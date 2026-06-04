@@ -1,7 +1,6 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
-import "package:expenzo/screens/auth/password_forget/enter_new_password.dart";
 import "package:expenzo/screens/auth/widgets/verification.dart";
 import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";
@@ -32,7 +31,7 @@ class ForgetPasswordEmail extends StatelessWidget {
                 getVerSpace(35),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: FetchPixels.getPixelWidth(60)
+                    right: FetchPixels.getPixelWidth(60),
                   ),
                   child: getSimpleRichText([
                     TextSpan(text: "Enter your "),
@@ -62,11 +61,15 @@ class ForgetPasswordEmail extends StatelessWidget {
 
                 getVerSpace(50),
 
-                MyButton(buttonText: "Continue", onTap: () {
-                  Constant.moveToNext(context, Verification(
-                    moveNextScreen: EnterNewPassword(),
-                  ));
-                }),
+                MyButton(
+                  buttonText: "Continue",
+                  onTap: () {
+                    Constant.moveToNext(
+                      context,
+                      Verification(nextRoute: '/enter-new-password'),
+                    );
+                  },
+                ),
               ],
             ),
           ),

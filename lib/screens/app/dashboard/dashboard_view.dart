@@ -95,7 +95,7 @@ class DashboardView extends StatelessWidget {
   }
 
   void _navigateToExpensesScreen(BuildContext context) {
-    // TODO: Navigate to expenses screen
+    Constant.navigateToRoute(context, '/expense-history');
   }
 
   @override

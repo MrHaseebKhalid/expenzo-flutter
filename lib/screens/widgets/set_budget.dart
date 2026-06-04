@@ -1,13 +1,13 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
-import "package:expenzo/screens/auth/initialize/welcome.dart";
 import "package:expenzo/screens/widgets/sub_category_box.dart";
 import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:expenzo/widgets/my_text_field.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
+
 import "../../resources/resources.dart";
 
 class SetBudget extends StatelessWidget {
@@ -167,10 +167,12 @@ class SetBudget extends StatelessWidget {
                 ]),
 
                 getVerSpace(30),
-                MyButton(buttonText: "Set Budget", onTap: () {
-
-                  Constant.moveToNext(context, Welcome());
-                }),
+                MyButton(
+                  buttonText: "Set Budget",
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/welcome');
+                  },
+                ),
                 getVerSpace(30),
               ],
             ),

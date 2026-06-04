@@ -2,7 +2,6 @@ import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
-import "package:expenzo/screens/app/profile/pages/faqs_screen.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
 
@@ -141,7 +140,16 @@ class ProfileView extends StatelessWidget {
               _buildMenuItem(
                 icon: Icons.notifications_outlined,
                 title: "Notifications",
-                onTap: () {},
+                onTap: () {
+                  Constant.navigateToRoute(context, '/notifications');
+                },
+              ),
+              _buildMenuItem(
+                icon: Icons.settings_outlined,
+                title: "Settings",
+                onTap: () {
+                  Constant.navigateToRoute(context, '/settings');
+                },
               ),
               _buildMenuItem(
                 icon: Icons.file_download_outlined,
@@ -152,7 +160,7 @@ class ProfileView extends StatelessWidget {
                 icon: Icons.help_outline,
                 title: "FAQs",
                 onTap: () {
-                  Constant.moveToNext(context, FAQsScreen());
+                  Constant.navigateToRoute(context, '/faqs');
                 },
               ),
               _buildMenuItem(

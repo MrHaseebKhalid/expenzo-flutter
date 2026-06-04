@@ -1,6 +1,6 @@
-import 'package:expenzo/screens/auth/sign%20in/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../base/resizer/constant.dart';
 import '../../../base/resizer/fetch_pixels.dart';
 import '../../../base/resizer/widget_utils.dart';
@@ -49,7 +49,7 @@ class _FirstOpenerState extends State<FirstOpener> {
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
-                    Constant.moveToNext(context, SignIn());
+                    Constant.navigateToRoute(context, '/sign-in');
                   },
                   child: SizedBox(
                     height: FetchPixels.getPixelHeight(50),
@@ -68,7 +68,7 @@ class _FirstOpenerState extends State<FirstOpener> {
               ),
             ),
             getVerSpace(20),
-        
+
             SizedBox(
               height: FetchPixels.getPixelHeight(500),
               child: PageView(
@@ -87,9 +87,7 @@ class _FirstOpenerState extends State<FirstOpener> {
                       ),
                       simpleText(
                         R.strings.firstOpenerTextBold,
-                        style: R.textStyle.boldInter().copyWith(
-                          fontSize: 15,
-                        ),
+                        style: R.textStyle.boldInter().copyWith(fontSize: 15),
                       ),
                     ],
                   ),
@@ -106,18 +104,16 @@ class _FirstOpenerState extends State<FirstOpener> {
                       ),
                       simpleText(
                         R.strings.secondOpenerTextBold,
-                        style: R.textStyle.boldInter().copyWith(
-                          fontSize: 15,
-                        ),
+                        style: R.textStyle.boldInter().copyWith(fontSize: 15),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-        
+
             getVerSpace(10),
-        
+
             Selector<AuthProvider, int>(
               selector: (context, dataProvider) =>
                   dataProvider.currentOpenerValue,
@@ -127,30 +123,37 @@ class _FirstOpenerState extends State<FirstOpener> {
                 spacing: 15,
                 children: [
                   Container(
-                    height:  FetchPixels.getPixelHeight((value == 0)? 12 : 9),
-                    width: FetchPixels.getPixelWidth((value == 0)? 12 : 9),
+                    height: FetchPixels.getPixelHeight((value == 0) ? 12 : 9),
+                    width: FetchPixels.getPixelWidth((value == 0) ? 12 : 9),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: (value == 0)? R.colors.primaryColor : R.colors.dimTextColor,
+                      color: (value == 0)
+                          ? R.colors.primaryColor
+                          : R.colors.dimTextColor,
                     ),
                   ),
                   Container(
-                    height: FetchPixels.getPixelHeight((value == 0)? 9 : 12),
-                    width: FetchPixels.getPixelWidth((value == 0)? 9 : 12),
+                    height: FetchPixels.getPixelHeight((value == 0) ? 9 : 12),
+                    width: FetchPixels.getPixelWidth((value == 0) ? 9 : 12),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: (value == 1)? R.colors.primaryColor : R.colors.dimTextColor,
+                      color: (value == 1)
+                          ? R.colors.primaryColor
+                          : R.colors.dimTextColor,
                     ),
                   ),
                 ],
               ),
             ),
-        
+
             getVerSpace(60),
-            MyButton(buttonText: "Get Started", onTap: () {
-              Constant.moveToNext(context, SignIn());
-            }),
-            getVerSpace(20)
+            MyButton(
+              buttonText: "Get Started",
+              onTap: () {
+                Constant.navigateToRoute(context, '/sign-in');
+              },
+            ),
+            getVerSpace(20),
           ],
         ),
       ),

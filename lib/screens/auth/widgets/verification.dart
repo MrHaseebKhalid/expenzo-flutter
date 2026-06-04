@@ -10,9 +10,9 @@ import "../../../resources/resources.dart";
 import "../../../widgets/my_app_bar1.dart";
 
 class Verification extends StatelessWidget {
-  final Widget moveNextScreen;
+  final String nextRoute;
 
-  const Verification({super.key, required this.moveNextScreen});
+  const Verification({super.key, required this.nextRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class Verification extends StatelessWidget {
                 MyButton(
                   buttonText: "Continue",
                   onTap: () {
-                    Constant.moveToNext(context, moveNextScreen);
+                    Constant.navigateToRoute(context, nextRoute);
                   },
                 ),
               ],

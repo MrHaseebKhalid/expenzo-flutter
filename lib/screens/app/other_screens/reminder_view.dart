@@ -1,5 +1,6 @@
 import "dart:ui";
 
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
@@ -168,121 +169,131 @@ class _ReminderViewState extends State<ReminderView> {
         break;
     }
 
-    return MyContainer(
-      padding: EdgeInsets.symmetric(
-        horizontal: FetchPixels.getPixelWidth(15),
-        vertical: FetchPixels.getPixelHeight(15),
-      ),
-      margin: EdgeInsets.only(bottom: FetchPixels.getPixelHeight(12)),
-      child: Row(
-        children: [
-          _buildCheckbox(
-            isChecked: reminder.isChecked,
-            onTap: () {
-              setState(() {
-                reminder.isChecked = !reminder.isChecked;
-              });
-            },
-          ),
-          getHorSpace(15),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        Constant.navigateToRoute(context, '/reminder-details');
+      },
+      child: MyContainer(
+        padding: EdgeInsets.symmetric(
+          horizontal: FetchPixels.getPixelWidth(15),
+          vertical: FetchPixels.getPixelHeight(15),
+        ),
+        margin: EdgeInsets.only(bottom: FetchPixels.getPixelHeight(12)),
+        child: Row(
+          children: [
+            _buildCheckbox(
+              isChecked: reminder.isChecked,
+              onTap: () {
+                setState(() {
+                  reminder.isChecked = !reminder.isChecked;
+                });
+              },
+            ),
+            getHorSpace(15),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  simpleText(
+                    reminder.title,
+                    style: R.textStyle.boldInter().copyWith(fontSize: 14),
+                  ),
+                  getVerSpace(5),
+                  Row(
+                    children: [
+                      simpleText(
+                        "Status : ",
+                        style: R.textStyle.mediumInter().copyWith(
+                          fontSize: 12,
+                          color: R.colors.dimTextColor,
+                        ),
+                      ),
+                      if (statusIcon != null) ...[
+                        Icon(
+                          statusIcon,
+                          size: FetchPixels.getPixelHeight(14),
+                          color: statusIconColor,
+                        ),
+                        getHorSpace(4),
+                      ],
+                      simpleText(
+                        reminder.status.name[0].toUpperCase() +
+                            reminder.status.name.substring(1),
+                        style: R.textStyle.mediumInter().copyWith(
+                          fontSize: 12,
+                          color: statusIconColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            getHorSpace(10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 simpleText(
-                  reminder.title,
-                  style: R.textStyle.boldInter().copyWith(fontSize: 14),
+                  "Final Date : ${reminder.finalDate}",
+                  style: R.textStyle.mediumInter().copyWith(
+                    fontSize: 11,
+                    color: R.colors.dimTextColor,
+                  ),
                 ),
-                getVerSpace(5),
-                Row(
-                  children: [
-                    simpleText(
-                      "Status : ",
-                      style: R.textStyle.mediumInter().copyWith(
-                        fontSize: 12,
-                        color: R.colors.dimTextColor,
-                      ),
-                    ),
-                    if (statusIcon != null) ...[
-                      Icon(
-                        statusIcon,
-                        size: FetchPixels.getPixelHeight(14),
-                        color: statusIconColor,
-                      ),
-                      getHorSpace(4),
-                    ],
-                    simpleText(
-                      reminder.status.name[0].toUpperCase() +
-                          reminder.status.name.substring(1),
-                      style: R.textStyle.mediumInter().copyWith(
-                        fontSize: 12,
-                        color: statusIconColor,
-                      ),
-                    ),
-                  ],
+                getVerSpace(4),
+                simpleText(
+                  reminder.daysLeft,
+                  style: R.textStyle.boldInter().copyWith(
+                    fontSize: 12,
+                    color: R.colors.redColor,
+                  ),
                 ),
               ],
             ),
-          ),
-          getHorSpace(10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              simpleText(
-                "Final Date : ${reminder.finalDate}",
-                style: R.textStyle.mediumInter().copyWith(
-                  fontSize: 11,
-                  color: R.colors.dimTextColor,
-                ),
-              ),
-              getVerSpace(4),
-              simpleText(
-                reminder.daysLeft,
-                style: R.textStyle.boldInter().copyWith(
-                  fontSize: 12,
-                  color: R.colors.redColor,
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildAddReminderButton() {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: FetchPixels.getPixelHeight(18)),
-      decoration: BoxDecoration(
-        color: R.colors.transparent,
-        borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(12)),
-      ),
-      child: CustomPaint(
-        painter: DashedBorderPainter(
-          color: R.colors.primaryColor,
-          dashWidth: 8.0,
-          dashSpace: 4.0,
+    return GestureDetector(
+      onTap: () {
+        Constant.navigateToRoute(context, '/add-reminder');
+      },
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(vertical: FetchPixels.getPixelHeight(18)),
+        decoration: BoxDecoration(
+          color: R.colors.transparent,
+          borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(12)),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(FetchPixels.getPixelWidth(2)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.add,
-                color: R.colors.primaryColor,
-                size: FetchPixels.getPixelHeight(20),
-              ),
-              getHorSpace(8),
-              simpleText(
-                "Add Reminder",
-                style: R.textStyle.semiBoldInter().copyWith(
-                  fontSize: 14,
+        child: CustomPaint(
+          painter: DashedBorderPainter(
+            color: R.colors.primaryColor,
+            dashWidth: 8.0,
+            dashSpace: 4.0,
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(FetchPixels.getPixelWidth(2)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.add,
                   color: R.colors.primaryColor,
+                  size: FetchPixels.getPixelHeight(20),
                 ),
-              ),
-            ],
+                getHorSpace(8),
+                simpleText(
+                  "Add Reminder",
+                  style: R.textStyle.semiBoldInter().copyWith(
+                    fontSize: 14,
+                    color: R.colors.primaryColor,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

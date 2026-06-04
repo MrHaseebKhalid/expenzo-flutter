@@ -11,6 +11,10 @@ class Constant {
     ).push(MaterialPageRoute(builder: (context) => nextScreen));
   }
 
+  static void navigateToRoute(BuildContext context, String routeName) {
+    Navigator.pushNamed(context, routeName);
+  }
+
   static double getOpacityValues(double percentage) {
     return (percentage / 100);
   }

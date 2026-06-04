@@ -1,3 +1,4 @@
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
@@ -82,9 +83,7 @@ class TransactionHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: MyBackButton(
-          onTap: () => Navigator.pop(context),
-        ),
+        leading: MyBackButton(onTap: () => Navigator.pop(context)),
         title: simpleText(
           "Transactions",
           style: R.textStyle.boldInter().copyWith(
@@ -159,14 +158,18 @@ class TransactionHistoryView extends StatelessWidget {
               category: "Bill",
               date: "23-04-25",
               amount: "\$12.45",
-              onTap: () {},
+              onTap: () {
+                Constant.navigateToRoute(context, '/transaction-details');
+              },
             ),
             _buildTransactionCard(
               title: "McDonald's Pizza",
               category: "Food",
               date: "23-04-25",
               amount: "\$25.00",
-              onTap: () {},
+              onTap: () {
+                Constant.navigateToRoute(context, '/transaction-details');
+              },
             ),
             getVerSpace(20),
             simpleText(
@@ -182,21 +185,27 @@ class TransactionHistoryView extends StatelessWidget {
               category: "Transport",
               date: "22-04-25",
               amount: "\$85.00",
-              onTap: () {},
+              onTap: () {
+                Constant.navigateToRoute(context, '/transaction-details');
+              },
             ),
             _buildTransactionCard(
               title: "March Wifi bill",
               category: "Bill",
               date: "22-04-25",
               amount: "\$60.00",
-              onTap: () {},
+              onTap: () {
+                Constant.navigateToRoute(context, '/transaction-details');
+              },
             ),
             _buildTransactionCard(
               title: "Shopping at Amazon",
               category: "Shopping",
               date: "22-04-25",
               amount: "\$120.50",
-              onTap: () {},
+              onTap: () {
+                Constant.navigateToRoute(context, '/transaction-details');
+              },
             ),
             getVerSpace(30),
           ],

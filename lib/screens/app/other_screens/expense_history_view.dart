@@ -1,3 +1,4 @@
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
@@ -12,48 +13,52 @@ class ExpenseHistoryView extends StatelessWidget {
     required String label,
     required double progress,
     required Color color,
+    VoidCallback? onTap,
   }) {
-    return MyContainer(
-      padding: EdgeInsets.symmetric(
-        horizontal: FetchPixels.getPixelWidth(15),
-        vertical: FetchPixels.getPixelHeight(20),
-      ),
-      margin: EdgeInsets.zero,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              SizedBox(
-                width: FetchPixels.getPixelWidth(80),
-                height: FetchPixels.getPixelHeight(80),
-                child: CircularProgressIndicator(
-                  value: progress,
-                  strokeWidth: 8,
-                  strokeCap: StrokeCap.round,
-                  backgroundColor: R.colors.lightGreyColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(color),
+    return GestureDetector(
+      onTap: onTap,
+      child: MyContainer(
+        padding: EdgeInsets.symmetric(
+          horizontal: FetchPixels.getPixelWidth(15),
+          vertical: FetchPixels.getPixelHeight(20),
+        ),
+        margin: EdgeInsets.zero,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: FetchPixels.getPixelWidth(80),
+                  height: FetchPixels.getPixelHeight(80),
+                  child: CircularProgressIndicator(
+                    value: progress,
+                    strokeWidth: 8,
+                    strokeCap: StrokeCap.round,
+                    backgroundColor: R.colors.lightGreyColor,
+                    valueColor: AlwaysStoppedAnimation<Color>(color),
+                  ),
                 ),
-              ),
-              simpleText(
-                "${(progress * 100).toInt()}%",
-                style: R.textStyle.boldInter().copyWith(
-                  fontSize: 14,
-                  color: R.colors.textColor,
+                simpleText(
+                  "${(progress * 100).toInt()}%",
+                  style: R.textStyle.boldInter().copyWith(
+                    fontSize: 14,
+                    color: R.colors.textColor,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          getVerSpace(12),
-          simpleText(
-            label,
-            style: R.textStyle.semiBoldInter().copyWith(
-              fontSize: 13,
-              color: color,
+              ],
             ),
-          ),
-        ],
+            getVerSpace(12),
+            simpleText(
+              label,
+              style: R.textStyle.semiBoldInter().copyWith(
+                fontSize: 13,
+                color: color,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -62,9 +67,7 @@ class ExpenseHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: MyBackButton(
-          onTap: () => Navigator.pop(context),
-        ),
+        leading: MyBackButton(onTap: () => Navigator.pop(context)),
         title: simpleText(
           "Expenses",
           style: R.textStyle.boldInter().copyWith(
@@ -139,36 +142,57 @@ class ExpenseHistoryView extends StatelessWidget {
                   label: "Food",
                   progress: 0.78,
                   color: R.colors.primaryColor,
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildExpenseCard(
                   label: "Transport",
                   progress: 0.41,
                   color: const Color(0xFFFF9800),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildExpenseCard(
                   label: "Bills",
                   progress: 0.79,
                   color: const Color(0xFF9C27B0),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildExpenseCard(
                   label: "Shopping",
                   progress: 0.67,
                   color: const Color(0xFFE91E63),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildExpenseCard(
                   label: "Health",
                   progress: 0.31,
                   color: const Color(0xFF00BCD4),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildExpenseCard(
                   label: "Entertainment",
                   progress: 0.63,
                   color: const Color(0xFFE040FB),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildExpenseCard(
                   label: "Others",
                   progress: 0.38,
                   color: const Color(0xFF009688),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
               ],
             ),

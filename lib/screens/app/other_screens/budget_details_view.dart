@@ -1,3 +1,4 @@
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
@@ -13,38 +14,38 @@ class BudgetDetailsView extends StatelessWidget {
     required String name,
     required String amount,
     required Color color,
+    VoidCallback? onTap,
   }) {
-    return MyContainer(
-      padding: EdgeInsets.symmetric(
-        horizontal: FetchPixels.getPixelWidth(15),
-        vertical: FetchPixels.getPixelHeight(20),
-      ),
-      margin: EdgeInsets.zero,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: color,
-            size: FetchPixels.getPixelHeight(32),
-          ),
-          getVerSpace(12),
-          simpleText(
-            name,
-            style: R.textStyle.semiBoldInter().copyWith(
-              fontSize: 13,
-              color: color,
+    return GestureDetector(
+      onTap: onTap,
+      child: MyContainer(
+        padding: EdgeInsets.symmetric(
+          horizontal: FetchPixels.getPixelWidth(15),
+          vertical: FetchPixels.getPixelHeight(20),
+        ),
+        margin: EdgeInsets.zero,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: FetchPixels.getPixelHeight(32)),
+            getVerSpace(12),
+            simpleText(
+              name,
+              style: R.textStyle.semiBoldInter().copyWith(
+                fontSize: 13,
+                color: color,
+              ),
             ),
-          ),
-          getVerSpace(8),
-          simpleText(
-            amount,
-            style: R.textStyle.boldInter().copyWith(
-              fontSize: 16,
-              color: R.colors.textColor,
+            getVerSpace(8),
+            simpleText(
+              amount,
+              style: R.textStyle.boldInter().copyWith(
+                fontSize: 16,
+                color: R.colors.textColor,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -53,9 +54,7 @@ class BudgetDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: MyBackButton(
-          onTap: () => Navigator.pop(context),
-        ),
+        leading: MyBackButton(onTap: () => Navigator.pop(context)),
         title: simpleText(
           "Budget details",
           style: R.textStyle.boldInter().copyWith(
@@ -101,7 +100,9 @@ class BudgetDetailsView extends StatelessWidget {
                         children: [
                           simpleText(
                             "current (default)",
-                            style: R.textStyle.mediumInter().copyWith(fontSize: 13),
+                            style: R.textStyle.mediumInter().copyWith(
+                              fontSize: 13,
+                            ),
                           ),
                           getHorSpace(5),
                           Icon(
@@ -168,42 +169,63 @@ class BudgetDetailsView extends StatelessWidget {
                   name: "Food",
                   amount: "\$2304",
                   color: R.colors.primaryColor,
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildCategoryCard(
                   icon: Icons.directions_car,
                   name: "Transport",
                   amount: "\$850",
                   color: const Color(0xFFFF9800),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildCategoryCard(
                   icon: Icons.receipt_long,
                   name: "Bills",
                   amount: "\$1200",
                   color: const Color(0xFF9C27B0),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildCategoryCard(
                   icon: Icons.shopping_bag,
                   name: "Shopping",
                   amount: "\$650",
                   color: const Color(0xFFE91E63),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildCategoryCard(
                   icon: Icons.local_hospital,
                   name: "Health",
                   amount: "\$400",
                   color: const Color(0xFF00BCD4),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildCategoryCard(
                   icon: Icons.casino,
                   name: "Entertainment",
                   amount: "\$300",
                   color: const Color(0xFFE040FB),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
                 _buildCategoryCard(
                   icon: Icons.work,
                   name: "Others",
                   amount: "\$200",
                   color: const Color(0xFF009688),
+                  onTap: () {
+                    Constant.navigateToRoute(context, '/expense-details');
+                  },
                 ),
               ],
             ),

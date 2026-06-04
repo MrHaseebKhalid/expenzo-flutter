@@ -2,12 +2,12 @@ import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/screens/auth/provider/auth_provider.dart";
-import "package:expenzo/screens/auth/sign%20in/sign_in.dart";
 import "package:expenzo/screens/auth/widgets/confirmation.dart";
 import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+
 import "../../../resources/resources.dart";
 import "../../../widgets/my_text_field.dart";
 
@@ -94,23 +94,24 @@ class EnterNewPassword extends StatelessWidget {
                       Confirmation(
                         mainText: "You have changed your account password.",
                         buttonText: "Redirect to Sign in",
-                        moveNextScreen: SignIn(),
+                        nextRoute: '/sign-in',
                         subRichTextChildren: [
-                          TextSpan(text: "Now, you can sign in to ",
-                          style: R.textStyle.mediumInter().copyWith(
-                            fontSize: 16
-                          )
+                          TextSpan(
+                            text: "Now, you can sign in to ",
+                            style: R.textStyle.mediumInter().copyWith(
+                              fontSize: 16,
+                            ),
                           ),
-                          TextSpan(text: "Expenzo.",
-                              style: R.textStyle.semiBoldInter().copyWith(
-                                  fontSize: 16,
-                                color: R.colors.primaryColor
-                              )
+                          TextSpan(
+                            text: "Expenzo.",
+                            style: R.textStyle.semiBoldInter().copyWith(
+                              fontSize: 16,
+                              color: R.colors.primaryColor,
+                            ),
                           ),
                         ],
                       ),
                     );
-
                   },
                 ),
               ],

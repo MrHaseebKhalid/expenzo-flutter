@@ -1,7 +1,7 @@
 import 'package:expenzo/resources/resources.dart';
 import 'package:expenzo/screens/app/provider/app_provider.dart';
-import 'package:expenzo/screens/auth/app_starter/splash.dart';
 import 'package:expenzo/screens/auth/provider/auth_provider.dart';
+import 'package:expenzo/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       darkTheme: R.themes.darkTheme,
 
       debugShowCheckedModeBanner: false,
-
-      home: const SplashScreen(),
+      routes: AppRoutes.getRoutes(),
+      initialRoute: Routes.splash,
     );
   }
 }
