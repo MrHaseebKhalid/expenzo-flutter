@@ -3,8 +3,10 @@ import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/data/expense_data.dart";
 import "package:expenzo/resources/resources.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -84,10 +86,14 @@ class DashboardView extends StatelessWidget {
             ],
           ),
           getHorSpace(8),
-          Icon(
-            Icons.arrow_forward_ios,
-            size: FetchPixels.getPixelHeight(14),
-            color: R.colors.dimTextColor,
+          SvgPicture.asset(
+            R.icons.forwardArrowIcon,
+            width: FetchPixels.getPixelWidth(14),
+            height: FetchPixels.getPixelHeight(14),
+            colorFilter: ColorFilter.mode(
+              R.colors.dimTextColor,
+              BlendMode.srcIn,
+            ),
           ),
         ],
       ),
@@ -95,7 +101,7 @@ class DashboardView extends StatelessWidget {
   }
 
   void _navigateToExpensesScreen(BuildContext context) {
-    Constant.navigateToRoute(context, '/expense-history');
+    Constant.navigateToRoute(context, Routes.expenseHistory);
   }
 
   @override
@@ -103,6 +109,7 @@ class DashboardView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         getVerSpace(10),
         Row(
@@ -126,30 +133,35 @@ class DashboardView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: FetchPixels.getPixelWidth(30),
           children: [
-            MyContainer(
-              padding: EdgeInsets.symmetric(
-                horizontal: FetchPixels.getPixelWidth(15),
-                vertical: FetchPixels.getPixelHeight(20),
-              ),
-              containerWidth: FetchPixels.getPixelWidth(150),
-              margin: EdgeInsets.zero,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  simpleText(
-                    "Total Budget",
-                    style: R.textStyle.boldInter().copyWith(fontSize: 15),
-                  ),
-                  getVerSpace(10),
-                  simpleText(
-                    "\$2000",
-                    style: R.textStyle.boldInter().copyWith(
-                      fontSize: 22,
-                      color: R.colors.secondaryColor,
+            GestureDetector(
+              onTap: () {
+                Constant.navigateToRoute(context, Routes.budgetDetails);
+              },
+              child: MyContainer(
+                padding: EdgeInsets.symmetric(
+                  horizontal: FetchPixels.getPixelWidth(15),
+                  vertical: FetchPixels.getPixelHeight(20),
+                ),
+                containerWidth: FetchPixels.getPixelWidth(150),
+                margin: EdgeInsets.zero,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    simpleText(
+                      "Total Budget",
+                      style: R.textStyle.boldInter().copyWith(fontSize: 15),
                     ),
-                  ),
-                ],
+                    getVerSpace(10),
+                    simpleText(
+                      "\$2000",
+                      style: R.textStyle.boldInter().copyWith(
+                        fontSize: 22,
+                        color: R.colors.secondaryColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             MyContainer(
@@ -289,11 +301,19 @@ class DashboardView extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => _navigateToExpensesScreen(context),
-                  child: simpleText(
-                    "see more",
-                    style: R.textStyle.mediumInter().copyWith(
-                      fontSize: 14,
-                      color: R.colors.primaryColor,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      right: FetchPixels.getPixelWidth(5),
+                      top: FetchPixels.getPixelHeight(10),
+                      bottom: FetchPixels.getPixelHeight(10),
+                      left: FetchPixels.getPixelWidth(5),
+                    ),
+                    child: simpleText(
+                      "see more",
+                      style: R.textStyle.mediumInter().copyWith(
+                        fontSize: 14,
+                        color: R.colors.primaryColor,
+                      ),
                     ),
                   ),
                 ),
@@ -301,21 +321,13 @@ class DashboardView extends StatelessWidget {
             ),
             getVerSpace(15),
             SizedBox(
-              height: FetchPixels.getPixelHeight(160),
+              height: FetchPixels.getPixelHeight(146),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount:
-                    StaticExpenseDataRepository
-                        .instance
-                        .overviewDonutSegments
-                        .length +
-                    1,
+                itemCount: 5,
+                itemExtent: FetchPixels.getPixelWidth(150),
                 itemBuilder: (context, index) {
-                  if (index ==
-                      StaticExpenseDataRepository
-                          .instance
-                          .overviewDonutSegments
-                          .length) {
+                  if (index == 4) {
                     return Padding(
                       padding: EdgeInsets.only(
                         right: FetchPixels.getPixelWidth(15),
@@ -328,7 +340,7 @@ class DashboardView extends StatelessWidget {
                             vertical: FetchPixels.getPixelHeight(15),
                           ),
                           margin: EdgeInsets.zero,
-                          containerWidth: FetchPixels.getPixelWidth(110),
+
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -342,10 +354,14 @@ class DashboardView extends StatelessWidget {
                                   ),
                                   shape: BoxShape.circle,
                                 ),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: FetchPixels.getPixelHeight(20),
-                                  color: R.colors.primaryColor,
+                                child: SvgPicture.asset(
+                                  R.icons.forwardArrowIcon,
+                                  width: FetchPixels.getPixelWidth(20),
+                                  height: FetchPixels.getPixelHeight(20),
+                                  colorFilter: ColorFilter.mode(
+                                    R.colors.primaryColor,
+                                    BlendMode.srcIn,
+                                  ),
                                 ),
                               ),
                               getVerSpace(10),
@@ -376,7 +392,6 @@ class DashboardView extends StatelessWidget {
                         vertical: FetchPixels.getPixelHeight(15),
                       ),
                       margin: EdgeInsets.zero,
-                      containerWidth: FetchPixels.getPixelWidth(110),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -391,6 +406,7 @@ class DashboardView extends StatelessWidget {
                                   strokeWidth: 8,
                                   strokeCap: StrokeCap.round,
                                   backgroundColor: R.colors.lightGreyColor,
+
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                     segment.color,
                                   ),
@@ -409,7 +425,8 @@ class DashboardView extends StatelessWidget {
                           simpleText(
                             segment.label,
                             style: R.textStyle.mediumInter().copyWith(
-                              fontSize: 13,
+                              fontSize: 14,
+                              color: segment.color,
                             ),
                           ),
                         ],
@@ -435,18 +452,28 @@ class DashboardView extends StatelessWidget {
                   style: R.textStyle.semiBoldInter().copyWith(fontSize: 18),
                 ),
                 GestureDetector(
-                  onTap: () {},
-                  child: simpleText(
-                    "see more",
-                    style: R.textStyle.mediumInter().copyWith(
-                      fontSize: 14,
-                      color: R.colors.primaryColor,
+                  onTap: () => Constant.navigateToRoute(
+                    context,
+                    Routes.transactionHistory,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      right: FetchPixels.getPixelWidth(5),
+                      top: FetchPixels.getPixelHeight(10),
+                      bottom: FetchPixels.getPixelHeight(10),
+                      left: FetchPixels.getPixelWidth(5),
+                    ),
+                    child: simpleText(
+                      "see more",
+                      style: R.textStyle.mediumInter().copyWith(
+                        fontSize: 14,
+                        color: R.colors.primaryColor,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            getVerSpace(8),
             simpleText(
               "Recents",
               style: R.textStyle.mediumInter().copyWith(
@@ -454,7 +481,7 @@ class DashboardView extends StatelessWidget {
                 color: R.colors.dimTextColor,
               ),
             ),
-            getVerSpace(15),
+            getVerSpace(20),
             _buildTransactionItem(
               "March Electricity bill",
               "Bills",
@@ -483,7 +510,7 @@ class DashboardView extends StatelessWidget {
               "25/04/25",
               R.colors.billsColor,
             ),
-            getVerSpace(30),
+            getVerSpace(60),
           ],
         ),
       ],

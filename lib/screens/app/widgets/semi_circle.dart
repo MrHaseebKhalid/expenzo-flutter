@@ -1,6 +1,7 @@
 import "dart:math" as math;
 
 import "package:expenzo/base/resizer/constant.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 
@@ -91,7 +92,9 @@ class SemiCircleState extends State<SemiCircle>
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Constant.navigateToRoute(context, Routes.setBudget);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,7 +111,9 @@ class SemiCircleState extends State<SemiCircle>
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Constant.navigateToRoute(context, Routes.addExpense);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,7 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:flutter/material.dart";
 
 import "../resources/resources.dart";
@@ -41,7 +42,7 @@ class MyAppBar2 extends StatelessWidget implements PreferredSizeWidget {
           circularIcon(
             iconPath: R.icons.settingsIcon,
             onTap: () {
-              Constant.navigateToRoute(context, '/settings');
+              Constant.navigateToRoute(context, Routes.settings);
             },
           ),
         if (isSettingsIcon && isBellIcon) getHorSpace(10),
@@ -49,7 +50,7 @@ class MyAppBar2 extends StatelessWidget implements PreferredSizeWidget {
           circularIcon(
             iconPath: R.icons.notificationBellIcon,
             onTap: () {
-              Constant.navigateToRoute(context, '/notifications');
+              Constant.navigateToRoute(context, Routes.notifications);
             },
           ),
       ],

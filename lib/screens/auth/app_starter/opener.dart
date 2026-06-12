@@ -1,3 +1,4 @@
+import 'package:expenzo/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +50,7 @@ class _FirstOpenerState extends State<FirstOpener> {
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
-                    Constant.navigateToRoute(context, '/sign-in');
+                    Constant.navigateToRoute(context, Routes.signIn);
                   },
                   child: SizedBox(
                     height: FetchPixels.getPixelHeight(50),
@@ -150,7 +151,7 @@ class _FirstOpenerState extends State<FirstOpener> {
             MyButton(
               buttonText: "Get Started",
               onTap: () {
-                Constant.navigateToRoute(context, '/sign-in');
+                Constant.navigateToRoute(context, Routes.signIn);
               },
             ),
             getVerSpace(20),

@@ -1,4 +1,5 @@
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:expenzo/widgets/my_list_tile.dart";
 import "package:flutter/material.dart";
@@ -88,7 +89,7 @@ class InitialDetails extends StatelessWidget {
                 MyButton(
                   buttonText: "Continue",
                   onTap: () {
-                    Constant.navigateToRoute(context, '/set-budget');
+                    Constant.navigateToRoute(context, Routes.setBudget);
                   },
                 ),
               ],

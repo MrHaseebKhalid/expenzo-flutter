@@ -1,15 +1,20 @@
+import 'package:expenzo/screens/app/app_view.dart';
+import 'package:expenzo/screens/app/other_screens/account_settings_view.dart';
+import 'package:expenzo/screens/app/other_screens/add_expense_screen.dart';
 import 'package:expenzo/screens/app/other_screens/add_reminder_view.dart';
+import 'package:expenzo/screens/app/other_screens/edit_profile_view.dart';
+import 'package:expenzo/screens/app/profile/account_details_view.dart';
+import 'package:expenzo/screens/app/profile/personal_info_view.dart';
 import 'package:expenzo/screens/app/other_screens/budget_details_view.dart';
 import 'package:expenzo/screens/app/other_screens/expense_details_view.dart';
 import 'package:expenzo/screens/app/other_screens/expense_history_view.dart';
+import 'package:expenzo/screens/app/other_screens/faqs_screen.dart';
 import 'package:expenzo/screens/app/other_screens/notifications_view.dart';
 import 'package:expenzo/screens/app/other_screens/reminder_detail_view.dart';
 import 'package:expenzo/screens/app/other_screens/reminder_view.dart';
 import 'package:expenzo/screens/app/other_screens/settings_view.dart';
-import 'package:expenzo/screens/app/other_screens/transaction_detail_screen.dart';
-import 'package:expenzo/screens/app/other_screens/transaction_details_view.dart';
-import 'package:expenzo/screens/app/other_screens/transaction_history_view.dart';
-import 'package:expenzo/screens/app/other_screens/transactions_screen.dart';
+import 'package:expenzo/screens/app/other_screens/transaction_detail_view.dart';
+import 'package:expenzo/screens/app/other_screens/transactions_history_view.dart';
 import 'package:expenzo/screens/auth/Sign up/sign_up.dart';
 import 'package:expenzo/screens/auth/app_starter/opener.dart';
 import 'package:expenzo/screens/auth/app_starter/splash.dart';
@@ -36,20 +41,19 @@ class Routes {
   static const String setBudget = '/set-budget';
 
   // Main screens
-  static const String dashboard = '/dashboard';
-  static const String analytics = '/analytics';
-  static const String overview = '/overview';
-  static const String profile = '/profile';
+  static const String appView = '/appView';
+  // static const String analytics = '/analytics';
+  // static const String overview = '/overview';
+  // static const String profile = '/profile';
 
   // Expense screens
+  static const String addExpense = '/add-expense';
   static const String expenseHistory = '/expense-history';
   static const String expenseDetails = '/expense-details';
 
   // Transaction screens
-  static const String transactions = '/transactions';
   static const String transactionHistory = '/transaction-history';
   static const String transactionDetails = '/transaction-details';
-  static const String transactionDetailScreen = '/transaction-detail-screen';
 
   // Budget screens
   static const String budgetDetails = '/budget-details';
@@ -61,7 +65,12 @@ class Routes {
 
   // Settings screens
   static const String settings = '/settings';
+  static const String accountSettings = '/account-settings';
+  static const String editProfile = '/edit-profile';
+  static const String personalInfo = '/personal-info';
+  static const String accountDetails = '/account-details';
   static const String notifications = '/notifications';
+  static const String faqs = '/faqs';
 }
 
 class AppRoutes {
@@ -72,22 +81,24 @@ class AppRoutes {
       Routes.opener: (context) => const FirstOpener(),
       Routes.signIn: (context) => const SignIn(),
       Routes.signUp: (context) => const SignUp(),
-      Routes.forgetPasswordEmail: (context) => const ForgetPasswordEmail(),
-      Routes.enterNewPassword: (context) => const EnterNewPassword(),
+
       Routes.welcome: (context) => const Welcome(),
       Routes.initialDetails: (context) => const InitialDetails(),
       Routes.setBudget: (context) => const SetBudget(),
+      Routes.forgetPasswordEmail: (context) => const ForgetPasswordEmail(),
+      Routes.enterNewPassword: (context) => const EnterNewPassword(),
+
+      // App view
+      Routes.appView: (context) => const AppView(),
 
       // Expense screens
+      Routes.addExpense: (context) => const AddExpenseScreen(),
       Routes.expenseHistory: (context) => const ExpenseHistoryView(),
       Routes.expenseDetails: (context) => const ExpenseDetailsView(),
 
       // Transaction screens
-      Routes.transactions: (context) => const TransactionsScreen(),
       Routes.transactionHistory: (context) => const TransactionHistoryView(),
-      Routes.transactionDetails: (context) => const TransactionDetailsView(),
-      Routes.transactionDetailScreen: (context) =>
-          const TransactionDetailScreen(),
+      Routes.transactionDetails: (context) => const TransactionDetailView(),
 
       // Budget screens
       Routes.budgetDetails: (context) => const BudgetDetailsView(),
@@ -99,7 +110,14 @@ class AppRoutes {
 
       // Settings screens
       Routes.settings: (context) => const SettingsView(),
+      Routes.accountSettings: (context) => const AccountSettingsView(),
+      Routes.editProfile: (context) => const EditProfileView(),
+      Routes.personalInfo: (context) => const PersonalInfoView(),
+      Routes.accountDetails: (context) => const AccountDetailsView(),
       Routes.notifications: (context) => const NotificationsView(),
+
+      // Other screens
+      Routes.faqs: (context) => const FAQsScreen(),
     };
   }
 

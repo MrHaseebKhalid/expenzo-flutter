@@ -1,12 +1,13 @@
-import "dart:ui";
-
+import "package:dotted_border/dotted_border.dart";
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
-import "package:expenzo/widgets/my_back_button.dart";
+import "package:expenzo/utils/routes.dart";
+import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
 enum ReminderStatus { completed, pending, overdue }
 
@@ -24,67 +25,6 @@ class ReminderItem {
     required this.daysLeft,
     this.isChecked = false,
   });
-}
-
-class DashedBorderPainter extends CustomPainter {
-  final Color color;
-  final double dashWidth;
-  final double dashSpace;
-
-  DashedBorderPainter({
-    required this.color,
-    this.dashWidth = 8.0,
-    this.dashSpace = 4.0,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = 2.0
-      ..style = PaintingStyle.stroke;
-
-    final path = Path();
-    final double radius = 12.0;
-
-    // Draw rounded rectangle with dashes
-    path.addRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(0, 0, size.width, size.height),
-        Radius.circular(radius),
-      ),
-    );
-
-    final dashPath = _createDashedPath(path, dashWidth, dashSpace);
-    canvas.drawPath(dashPath, paint);
-  }
-
-  Path _createDashedPath(Path source, double dashWidth, double dashSpace) {
-    final Path dest = Path();
-    for (final PathMetric metric in source.computeMetrics()) {
-      double distance = 0.0;
-      bool draw = true;
-      while (distance < metric.length) {
-        final double len = draw ? dashWidth : dashSpace;
-        if (draw) {
-          dest.addPath(
-            metric.extractPath(distance, distance + len),
-            Offset.zero,
-          );
-        }
-        distance += len;
-        draw = !draw;
-      }
-    }
-    return dest;
-  }
-
-  @override
-  bool shouldRepaint(DashedBorderPainter oldDelegate) {
-    return oldDelegate.color != color ||
-        oldDelegate.dashWidth != dashWidth ||
-        oldDelegate.dashSpace != dashSpace;
-  }
 }
 
 class ReminderView extends StatefulWidget {
@@ -137,7 +77,7 @@ class _ReminderViewState extends State<ReminderView> {
         height: FetchPixels.getPixelHeight(24),
         decoration: BoxDecoration(
           color: isChecked ? R.colors.primaryColor : R.colors.transparent,
-          border: Border.all(color: R.colors.primaryColor, width: 2),
+          border: Border.all(color: R.colors.primaryColor, width: 1.5),
           borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(6)),
         ),
         child: isChecked
@@ -171,7 +111,7 @@ class _ReminderViewState extends State<ReminderView> {
 
     return GestureDetector(
       onTap: () {
-        Constant.navigateToRoute(context, '/reminder-details');
+        Constant.navigateToRoute(context, Routes.reminderDetails);
       },
       child: MyContainer(
         padding: EdgeInsets.symmetric(
@@ -257,43 +197,45 @@ class _ReminderViewState extends State<ReminderView> {
   }
 
   Widget _buildAddReminderButton() {
-    return GestureDetector(
-      onTap: () {
-        Constant.navigateToRoute(context, '/add-reminder');
-      },
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: FetchPixels.getPixelHeight(18)),
-        decoration: BoxDecoration(
-          color: R.colors.transparent,
-          borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(12)),
-        ),
-        child: CustomPaint(
-          painter: DashedBorderPainter(
-            color: R.colors.primaryColor,
-            dashWidth: 8.0,
-            dashSpace: 4.0,
+    return DottedBorder(
+      options: RoundedRectDottedBorderOptions(
+        color: R.colors.primaryColor,
+
+        strokeWidth: 1.5,
+        dashPattern: [7, 4],
+        padding: EdgeInsets.zero,
+        radius: Radius.circular(FetchPixels.getPixelWidth(12)),
+      ),
+      child: GestureDetector(
+        onTap: () {
+          Constant.navigateToRoute(context, Routes.addReminder);
+        },
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            vertical: FetchPixels.getPixelHeight(14),
           ),
-          child: Padding(
-            padding: EdgeInsets.all(FetchPixels.getPixelWidth(2)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add,
+          decoration: BoxDecoration(
+            color: R.colors.primaryColor.withValues(alpha: 0.09),
+            borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(12)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.add,
+                color: R.colors.primaryColor,
+                size: FetchPixels.getPixelHeight(20),
+              ),
+              getHorSpace(8),
+              simpleText(
+                "Add Reminder",
+                style: R.textStyle.semiBoldInter().copyWith(
+                  fontSize: 14,
                   color: R.colors.primaryColor,
-                  size: FetchPixels.getPixelHeight(20),
                 ),
-                getHorSpace(8),
-                simpleText(
-                  "Add Reminder",
-                  style: R.textStyle.semiBoldInter().copyWith(
-                    fontSize: 14,
-                    color: R.colors.primaryColor,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -303,75 +245,93 @@ class _ReminderViewState extends State<ReminderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: MyBackButton(onTap: () => Navigator.pop(context)),
-        title: simpleText(
-          "Reminders",
-          style: R.textStyle.boldInter().copyWith(
-            fontSize: 20,
-            color: R.colors.primaryColor,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: R.colors.bgColor,
-      ),
       backgroundColor: R.colors.bgColor,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: FetchPixels.getPixelWidth(20),
-          vertical: FetchPixels.getPixelHeight(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                simpleText(
-                  "Set reminders to be timely",
-                  style: R.textStyle.mediumInter().copyWith(fontSize: 14),
-                ),
-                getHorSpace(5),
-                Icon(
-                  Icons.access_time,
-                  color: R.colors.primaryColor,
-                  size: FetchPixels.getPixelHeight(18),
-                ),
-              ],
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              top: FetchPixels.getPixelHeight(10),
+              left: FetchPixels.getPixelWidth(20),
+              bottom: FetchPixels.getPixelHeight(10),
             ),
-            getVerSpace(25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                simpleText(
-                  "Your Reminders",
-                  style: R.textStyle.boldInter().copyWith(
-                    fontSize: 18,
-                    color: R.colors.primaryColor,
+            child: MyAppBar1(titleText: "Reminders", titleFontSize: 19),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: FetchPixels.getPixelWidth(20),
+                vertical: FetchPixels.getPixelHeight(20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      simpleText(
+                        "Set reminders to be timely",
+                        style: R.textStyle.mediumInter().copyWith(fontSize: 14),
+                      ),
+                      getHorSpace(5),
+                      SvgPicture.asset(
+                        R.icons.clockIcon,
+                        colorFilter: ColorFilter.mode(
+                          R.colors.primaryColor,
+                          BlendMode.srcIn,
+                        ),
+                        width: FetchPixels.getPixelWidth(18),
+                        height: FetchPixels.getPixelHeight(18),
+                      ),
+                    ],
                   ),
-                ),
-                Icon(
-                  Icons.add,
-                  color: R.colors.primaryColor,
-                  size: FetchPixels.getPixelHeight(24),
-                ),
-              ],
-            ),
-            getVerSpace(8),
-            simpleText(
-              "Latest",
-              style: R.textStyle.mediumInter().copyWith(
-                fontSize: 12,
-                color: R.colors.dimTextColor,
+                  getVerSpace(25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      simpleText(
+                        "Your Reminders",
+                        style: R.textStyle.boldInter().copyWith(
+                          fontSize: 18,
+                          color: R.colors.primaryColor,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Constant.navigateToRoute(context, Routes.addReminder);
+                          // TODO: Navigate to add reminder screen
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: SvgPicture.asset(
+                            R.icons.plusIcon,
+                            colorFilter: ColorFilter.mode(
+                              R.colors.primaryColor,
+                              BlendMode.srcIn,
+                            ),
+                            width: FetchPixels.getPixelWidth(18),
+                            height: FetchPixels.getPixelHeight(18),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  getVerSpace(8),
+                  simpleText(
+                    "Latest",
+                    style: R.textStyle.mediumInter().copyWith(
+                      fontSize: 12,
+                      color: R.colors.dimTextColor,
+                    ),
+                  ),
+                  getVerSpace(10),
+                  ...reminders.map((reminder) => _buildReminderCard(reminder)),
+                  getVerSpace(20),
+                  _buildAddReminderButton(),
+                  getVerSpace(30),
+                ],
               ),
             ),
-            getVerSpace(20),
-            ...reminders.map((reminder) => _buildReminderCard(reminder)),
-            getVerSpace(20),
-            _buildAddReminderButton(),
-            getVerSpace(30),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -6,9 +6,15 @@ import "../resources/resources.dart";
 
 class MyButton extends StatelessWidget {
   final String buttonText;
+  final TextStyle? buttonTextStyle;
   final GestureTapCallback onTap;
 
-  const MyButton({super.key, required this.buttonText, required this.onTap});
+  const MyButton({
+    super.key,
+    required this.buttonText,
+    required this.onTap,
+    this.buttonTextStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +30,12 @@ class MyButton extends StatelessWidget {
         ),
         child: simpleText(
           buttonText,
-          style: R.textStyle.boldInter().copyWith(
-            color: R.colors.whiteTextColor,
-            fontSize: 17,
-          ),
+          style:
+              buttonTextStyle ??
+              R.textStyle.boldInter().copyWith(
+                color: R.colors.whiteTextColor,
+                fontSize: 17,
+              ),
         ),
       ),
     );

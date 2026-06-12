@@ -1,5 +1,6 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 
@@ -72,7 +73,7 @@ class Welcome extends StatelessWidget {
                 MyButton(
                   buttonText: "Let’s Go",
                   onTap: () {
-                    Constant.navigateToRoute(context, '/dashboard');
+                    Constant.navigateToRoute(context, Routes.appView);
                   },
                 ),
               ],

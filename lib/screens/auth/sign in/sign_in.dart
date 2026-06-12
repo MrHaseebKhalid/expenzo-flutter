@@ -2,6 +2,7 @@ import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/screens/auth/provider/auth_provider.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:expenzo/widgets/my_text_field.dart";
 import "package:flutter/material.dart";
@@ -88,7 +89,7 @@ class SignIn extends StatelessWidget {
                     onTap: () {
                       Constant.navigateToRoute(
                         context,
-                        '/forget-password-email',
+                        Routes.forgetPasswordEmail,
                       );
                     },
                     child: Padding(
@@ -111,7 +112,7 @@ class SignIn extends StatelessWidget {
                 MyButton(
                   buttonText: "Sign in",
                   onTap: () {
-                    Constant.navigateToRoute(context, '/initial-details');
+                    Constant.navigateToRoute(context, Routes.initialDetails);
                   },
                 ),
 
@@ -155,7 +156,7 @@ class SignIn extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Constant.navigateToRoute(context, '/sign-up');
+                        Constant.navigateToRoute(context, Routes.signUp);
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(

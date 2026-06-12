@@ -1,9 +1,12 @@
+import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
-import "package:expenzo/widgets/my_back_button.dart";
+import "package:expenzo/utils/routes.dart";
+import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -43,12 +46,18 @@ class _NotificationsViewState extends State<NotificationsView> {
                 color: isEnabled ? R.colors.primaryColor : R.colors.textColor,
                 width: 1.5,
               ),
-              borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(12)),
+              borderRadius: BorderRadius.circular(
+                FetchPixels.getPixelWidth(12),
+              ),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: FetchPixels.getPixelWidth(2)),
+              padding: EdgeInsets.symmetric(
+                horizontal: FetchPixels.getPixelWidth(2),
+              ),
               child: Row(
-                mainAxisAlignment: isEnabled ? MainAxisAlignment.end : MainAxisAlignment.start,
+                mainAxisAlignment: isEnabled
+                    ? MainAxisAlignment.end
+                    : MainAxisAlignment.start,
                 children: [
                   Container(
                     width: FetchPixels.getPixelWidth(18),
@@ -83,6 +92,7 @@ class _NotificationsViewState extends State<NotificationsView> {
     return GestureDetector(
       onTap: onTap,
       child: MyContainer(
+        borderRadius: 10,
         padding: EdgeInsets.symmetric(
           horizontal: FetchPixels.getPixelWidth(15),
           vertical: FetchPixels.getPixelHeight(15),
@@ -105,10 +115,14 @@ class _NotificationsViewState extends State<NotificationsView> {
                   ),
                 ),
                 getHorSpace(8),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  size: FetchPixels.getPixelHeight(18),
-                  color: R.colors.primaryColor,
+                SvgPicture.asset(
+                  R.icons.downArrowIcon,
+                  width: FetchPixels.getPixelWidth(8),
+                  height: FetchPixels.getPixelHeight(8),
+                  colorFilter: ColorFilter.mode(
+                    R.colors.primaryColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ],
             ),
@@ -136,19 +150,13 @@ class _NotificationsViewState extends State<NotificationsView> {
             title,
             style: R.textStyle.semiBoldInter().copyWith(fontSize: 15),
           ),
-          _buildCustomSwitch(
-            isEnabled: isEnabled,
-            onChanged: onChanged,
-          ),
+          _buildCustomSwitch(isEnabled: isEnabled, onChanged: onChanged),
         ],
       ),
     );
   }
 
-  Widget _buildNavigationCard({
-    required String title,
-    VoidCallback? onTap,
-  }) {
+  Widget _buildNavigationCard({required String title, VoidCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: MyContainer(
@@ -164,10 +172,14 @@ class _NotificationsViewState extends State<NotificationsView> {
               title,
               style: R.textStyle.semiBoldInter().copyWith(fontSize: 15),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: FetchPixels.getPixelHeight(14),
-              color: R.colors.primaryColor,
+            SvgPicture.asset(
+              R.icons.forwardArrowIcon,
+              width: FetchPixels.getPixelWidth(14),
+              height: FetchPixels.getPixelHeight(14),
+              colorFilter: ColorFilter.mode(
+                R.colors.primaryColor,
+                BlendMode.srcIn,
+              ),
             ),
           ],
         ),
@@ -178,96 +190,99 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: MyBackButton(
-          onTap: () => Navigator.pop(context),
-        ),
-        title: simpleText(
-          "Notifications",
-          style: R.textStyle.boldInter().copyWith(
-            fontSize: 20,
-            color: R.colors.primaryColor,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: R.colors.bgColor,
-      ),
       backgroundColor: R.colors.bgColor,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: FetchPixels.getPixelWidth(20),
-          vertical: FetchPixels.getPixelHeight(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                simpleText(
-                  "Customize your finance notifications",
-                  style: R.textStyle.mediumInter().copyWith(fontSize: 14),
-                ),
-                getHorSpace(5),
-                Icon(
-                  Icons.trending_up,
-                  color: R.colors.secondaryColor,
-                  size: FetchPixels.getPixelHeight(18),
-                ),
-              ],
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              top: FetchPixels.getPixelHeight(10),
+              left: FetchPixels.getPixelWidth(20),
+              bottom: FetchPixels.getPixelHeight(10),
             ),
-            getVerSpace(25),
-            _buildDropdownCard(
-              title: "Remainder time",
-              value: "11:00 am (Default)",
+            child: MyAppBar1(titleText: "Notifications", titleFontSize: 19),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: FetchPixels.getPixelWidth(20),
+                vertical: FetchPixels.getPixelHeight(20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      simpleText(
+                        "Customize your finance notifications",
+                        style: R.textStyle.mediumInter().copyWith(fontSize: 14),
+                      ),
+                      getHorSpace(5),
+                      SvgPicture.asset(
+                        R.icons.financeNotificationLineIcon,
+
+                        width: FetchPixels.getPixelWidth(18),
+                        height: FetchPixels.getPixelHeight(18),
+                      ),
+                    ],
+                  ),
+                  getVerSpace(25),
+                  _buildDropdownCard(
+                    title: "Remainder time",
+                    value: "11:00 am (Default)",
+                  ),
+                  _buildDropdownCard(
+                    title: "Remainder Frequency",
+                    value: "Daily (Default)",
+                  ),
+                  _buildDropdownCard(
+                    title: "Budget Alerts",
+                    value: "When its 90% Full",
+                  ),
+                  _buildDropdownCard(
+                    title: "Expenses Alerts",
+                    value: "when near exceeding...",
+                  ),
+                  getVerSpace(10),
+                  _buildToggleCard(
+                    title: "Updates",
+                    isEnabled: updatesEnabled,
+                    onChanged: (value) {
+                      setState(() {
+                        updatesEnabled = value;
+                      });
+                    },
+                  ),
+                  _buildToggleCard(
+                    title: "Notifications",
+                    isEnabled: notificationsEnabled,
+                    onChanged: (value) {
+                      setState(() {
+                        notificationsEnabled = value;
+                      });
+                    },
+                  ),
+                  _buildToggleCard(
+                    title: "In-App Notifications",
+                    isEnabled: inAppNotificationsEnabled,
+                    onChanged: (value) {
+                      setState(() {
+                        inAppNotificationsEnabled = value;
+                      });
+                    },
+                  ),
+                  getVerSpace(10),
+                  _buildNavigationCard(
+                    title: "Reminders",
+                    onTap: () {
+                      Constant.navigateToRoute(context, Routes.reminders);
+                    },
+                  ),
+                  getVerSpace(30),
+                ],
+              ),
             ),
-            _buildDropdownCard(
-              title: "Remainder Frequency",
-              value: "Daily (Default)",
-            ),
-            _buildDropdownCard(
-              title: "Budget Alerts",
-              value: "When its 90% Full",
-            ),
-            _buildDropdownCard(
-              title: "Expenses Alerts",
-              value: "when near exceeding...",
-            ),
-            getVerSpace(10),
-            _buildToggleCard(
-              title: "Updates",
-              isEnabled: updatesEnabled,
-              onChanged: (value) {
-                setState(() {
-                  updatesEnabled = value;
-                });
-              },
-            ),
-            _buildToggleCard(
-              title: "Notifications",
-              isEnabled: notificationsEnabled,
-              onChanged: (value) {
-                setState(() {
-                  notificationsEnabled = value;
-                });
-              },
-            ),
-            _buildToggleCard(
-              title: "In-App Notifications",
-              isEnabled: inAppNotificationsEnabled,
-              onChanged: (value) {
-                setState(() {
-                  inAppNotificationsEnabled = value;
-                });
-              },
-            ),
-            getVerSpace(10),
-            _buildNavigationCard(
-              title: "Reminders",
-            ),
-            getVerSpace(30),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

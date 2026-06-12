@@ -1,6 +1,9 @@
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/screens/auth/provider/auth_provider.dart";
+import "package:expenzo/screens/auth/widgets/confirmation.dart";
+import "package:expenzo/screens/auth/widgets/verification.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
@@ -161,7 +164,31 @@ class SignUp extends StatelessWidget {
                 MyButton(
                   buttonText: "Sign up",
                   onTap: () {
-                    Constant.navigateToRoute(context, '/verification');
+                    Constant.moveToNext(
+                      context,
+                      Verification(
+                        nextScreen: Confirmation(
+                          mainText: "You have created your account.",
+                          buttonText: "Redirect to Sign in",
+                          nextRoute: Routes.signIn,
+                          subRichTextChildren: [
+                            TextSpan(
+                              text: "Now, you can sign in to ",
+                              style: R.textStyle.mediumInter().copyWith(
+                                fontSize: 16,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Expenzo",
+                              style: R.textStyle.semiBoldInter().copyWith(
+                                fontSize: 16,
+                                color: R.colors.primaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   },
                 ),
 
@@ -205,7 +232,7 @@ class SignUp extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Constant.navigateToRoute(context, '/sign-in');
+                        Constant.navigateToRoute(context, Routes.signIn);
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(

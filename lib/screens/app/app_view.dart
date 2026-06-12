@@ -93,15 +93,16 @@ class _AppViewState extends State<AppView> {
                   child: Selector<AppProvider, int>(
                     selector: (context, appProvider) =>
                         appProvider.currentPageIndex,
-                    builder: (context, value, child) => IndexedStack(
-                      index: value,
-                      children: [
-                        Overview(),
-                        DashboardView(),
-                        AnalyticsView(),
-                        ProfileView(),
-                      ],
-                    ),
+                    builder: (context, value, child) =>
+                        DynamicIndexedStack(
+                          index: value,
+                          children: [
+                            Overview(),
+                            DashboardView(),
+                            AnalyticsView(),
+                            ProfileView(),
+                          ],
+                        ),
                   ),
                 ),
               ),
@@ -116,6 +117,33 @@ class _AppViewState extends State<AppView> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DynamicIndexedStack extends StatelessWidget {
+  final int index;
+  final List<Widget> children;
+
+  const DynamicIndexedStack({
+    super.key,
+    required this.index,
+    required this.children,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: List<Widget>.generate(children.length, (i) {
+        return Visibility(
+          visible: index == i,
+          maintainState: true, // Preserves your screen's content & scroll state
+          maintainSize:
+              false, // CRITICAL: Frees up the extra height/width space
+          maintainAnimation: true,
+          child: children[i],
+        );
+      }),
     );
   }
 }

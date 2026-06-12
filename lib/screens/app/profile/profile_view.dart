@@ -2,14 +2,17 @@ import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
 import "package:expenzo/resources/resources.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
   Widget _buildMenuItem({
-    required IconData icon,
+    String svgIconPath = "",
+    IconData? icon,
     required String title,
     required VoidCallback onTap,
   }) {
@@ -17,13 +20,16 @@ class ProfileView extends StatelessWidget {
       onTap: onTap,
       child: MyContainer(
         padding: EdgeInsets.symmetric(
-          horizontal: FetchPixels.getPixelWidth(20),
-          vertical: FetchPixels.getPixelHeight(18),
+          horizontal: FetchPixels.getPixelWidth(12),
+          vertical: FetchPixels.getPixelHeight(12),
         ),
         margin: EdgeInsets.only(bottom: FetchPixels.getPixelHeight(12)),
         child: Row(
           children: [
             Container(
+              padding: svgIconPath == ""
+                  ? EdgeInsets.zero
+                  : EdgeInsets.all(FetchPixels.getPixelWidth(12)),
               width: FetchPixels.getPixelWidth(45),
               height: FetchPixels.getPixelHeight(45),
               decoration: BoxDecoration(
@@ -34,11 +40,23 @@ class ProfileView extends StatelessWidget {
                   FetchPixels.getPixelWidth(12),
                 ),
               ),
-              child: Icon(
-                icon,
-                size: FetchPixels.getPixelHeight(22),
-                color: R.colors.primaryColor,
-              ),
+              child: (svgIconPath != "")
+                  ? SvgPicture.asset(
+                      svgIconPath,
+
+                      fit: BoxFit.contain,
+                      width: FetchPixels.getPixelWidth(22),
+                      // height: FetchPixels.getPixelHeight(22),
+                      colorFilter: ColorFilter.mode(
+                        R.colors.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    )
+                  : Icon(
+                      icon,
+                      size: FetchPixels.getPixelHeight(22),
+                      color: R.colors.primaryColor,
+                    ),
             ),
             getHorSpace(15),
             Expanded(
@@ -47,10 +65,14 @@ class ProfileView extends StatelessWidget {
                 style: R.textStyle.semiBoldInter().copyWith(fontSize: 15),
               ),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: FetchPixels.getPixelHeight(16),
-              color: R.colors.dimTextColor,
+            SvgPicture.asset(
+              R.icons.forwardArrowIcon,
+              width: FetchPixels.getPixelWidth(14),
+              height: FetchPixels.getPixelHeight(14),
+              colorFilter: ColorFilter.mode(
+                R.colors.dimTextColor,
+                BlendMode.srcIn,
+              ),
             ),
           ],
         ),
@@ -63,6 +85,7 @@ class ProfileView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         getVerSpace(20),
         Stack(
@@ -72,6 +95,7 @@ class ProfileView extends StatelessWidget {
               width: FetchPixels.getPixelWidth(100),
               height: FetchPixels.getPixelHeight(100),
               decoration: BoxDecoration(
+                border: Border.all(color: R.colors.primaryColor, width: 1.5),
                 shape: BoxShape.circle,
                 color: R.colors.lightGreyColor,
               ),
@@ -104,7 +128,10 @@ class ProfileView extends StatelessWidget {
         getVerSpace(15),
         simpleText(
           "Mark Rober",
-          style: R.textStyle.boldInter().copyWith(fontSize: 22),
+          style: R.textStyle.boldInter().copyWith(
+            fontSize: 22,
+            color: R.colors.textColor,
+          ),
         ),
         getVerSpace(5),
         simpleText(
@@ -125,53 +152,42 @@ class ProfileView extends StatelessWidget {
               _buildMenuItem(
                 icon: Icons.person_outline,
                 title: "Personal Info",
-                onTap: () {},
-              ),
-              _buildMenuItem(
-                icon: Icons.account_balance_wallet_outlined,
-                title: "Finance details",
-                onTap: () {},
+                onTap: () {
+                  Constant.navigateToRoute(context, Routes.personalInfo);
+                },
               ),
               _buildMenuItem(
                 icon: Icons.account_circle_outlined,
                 title: "Account details",
-                onTap: () {},
+                onTap: () {
+                  Constant.navigateToRoute(context, Routes.accountDetails);
+                },
               ),
               _buildMenuItem(
-                icon: Icons.notifications_outlined,
+                svgIconPath: R.icons.notificationBellIcon,
                 title: "Notifications",
                 onTap: () {
-                  Constant.navigateToRoute(context, '/notifications');
+                  Constant.navigateToRoute(context, Routes.notifications);
                 },
               ),
               _buildMenuItem(
-                icon: Icons.settings_outlined,
+                svgIconPath: R.icons.settingsIcon,
                 title: "Settings",
                 onTap: () {
-                  Constant.navigateToRoute(context, '/settings');
+                  Constant.navigateToRoute(context, Routes.settings);
                 },
-              ),
-              _buildMenuItem(
-                icon: Icons.file_download_outlined,
-                title: "Export Data",
-                onTap: () {},
               ),
               _buildMenuItem(
                 icon: Icons.help_outline,
                 title: "FAQs",
                 onTap: () {
-                  Constant.navigateToRoute(context, '/faqs');
+                  Constant.navigateToRoute(context, Routes.faqs);
                 },
-              ),
-              _buildMenuItem(
-                icon: Icons.info_outline,
-                title: "About us",
-                onTap: () {},
               ),
             ],
           ),
         ),
-        getVerSpace(30),
+        getVerSpace(60),
       ],
     );
   }

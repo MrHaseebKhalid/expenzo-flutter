@@ -1,0 +1,53 @@
+Use Flutter best practices.
+Use MVVM architecture.
+Use Provider for state management.
+Separate UI, business logic, and data layers.
+Use reusable widgets.
+Avoid giant widget files.
+Keep widgets under 300 lines when possible.
+Use responsive layouts.
+Use meaningful naming conventions.
+Avoid duplicate code.
+Prefer composition over inheritance.
+Use clean architecture principles.
+Keep folder structure organized.
+Use const constructors whenever possible.
+Optimize rebuilds for performance.
+Do not create unnecessary abstractions.
+Generate production-quality Flutter code.
+Before creating new files, check existing architecture first.
+
+
+
+# Project Development Rules & Roadmap
+
+## Tech Stack & Configuration
+- **Frontend Framework:** [Flutter , dart]
+- **Navigation Library:** [built in navigation]
+- **State Management:** [Provider]
+
+## Strict Phased Execution Workflow
+You must strictly follow these phases in order. Do not write backend logic or state management code until Phase 1 and Phase 2 are fully approved by me.
+
+### Phase 1: Static UI Blueprint
+- Build only the visual components and layout shell.
+- Use hardcoded mockup data. Do not add functional hooks, API calls, or complex states.
+- Ensure all components are modular, clean, and use the specified styling library.
+
+### Phase 2: Navigation & Component Flow
+- Connect the static screens using the specified navigation library.
+- Implement tab bars, side menus, or router links.
+- Ensure I can click through every screen of the app using placeholder actions before writing any data logic.
+
+### Phase 3: Local State & Interactivity
+- Replace static mock data with local state variables.
+- Implement form validation, UI toggles, and client-side filtering.
+
+### Phase 4: Full App Integration & Production Hardening
+- Connect mock data to actual APIs, databases, or backend services.
+- Implement global state management.
+- Add strict TypeScript types, error handling boundary screens, and loading spinners.
+
+## Agent Instructions
+- Always ask for my explicit approval at the end of a phase before proposing code for the next phase.
+- If I ask for a feature that belongs to a later phase, gently remind me of our current phase and ask if we should officially move forward.

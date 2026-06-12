@@ -1,6 +1,7 @@
 import "package:expenzo/base/resizer/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/utils/routes.dart";
 import "package:flutter/material.dart";
 
 import "../../../resources/resources.dart";
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
-      Constant.navigateToRoute(context, '/opener');
+      Constant.navigateToRoute(context, Routes.opener);
     });
     super.initState();
   }

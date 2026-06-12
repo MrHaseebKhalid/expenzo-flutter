@@ -7,6 +7,7 @@ class AppIcons {
   final String mailIcon = "assets/icons/mail_icon.svg";
   final String passwordIcon = "assets/icons/password_icon.svg";
   final String backArrowIcon = "assets/icons/back_arrow_icon.svg";
+  final String forwardArrowIcon = "assets/icons/forward_arrow_icon.svg";
   final String profileIcon = "assets/icons/profile_icon.svg";
   final String tickIcon = "assets/icons/tick_icon.svg";
   final String dollarNoteIcon = "assets/icons/dollar_note_icon.svg";
@@ -44,4 +45,16 @@ class AppIcons {
 
   final String addExpenseIcon = "assets/icons/add_expense_icon.svg";
   final String setBudgetIcon = "assets/icons/set_budget_icon.svg";
+
+  final String alarmClockIcon = "assets/icons/alarm_clock_icon.svg";
+  final String calenderIcon = "assets/icons/calender_icon.svg";
+  final String categoryIcon = "assets/icons/category_icon.svg";
+  final String deleteIcon = "assets/icons/delete_icon.svg";
+  final String descriptionBlueIcon = "assets/icons/description_blue_icon.svg";
+  final String descriptionIcon = "assets/icons/description_icon.svg";
+  final String editIcon = "assets/icons/edit_icon.svg";
+  final String financeNotificationLineIcon =
+      "assets/icons/finance_notification_line_icon.svg";
+  final String paymentMethodIcon = "assets/icons/payment_method_icon.svg";
+  final String coinsIcon = "assets/icons/coins_icon.svg";
 }

@@ -6,10 +6,10 @@ import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_container.dart";
 import "package:flutter/material.dart";
-import "package:flutter_svg/svg.dart";
+import "package:flutter_svg/flutter_svg.dart";
 
-class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
+class AccountSettingsView extends StatelessWidget {
+  const AccountSettingsView({super.key});
 
   Widget _buildSettingTile({
     required String svgIconPath,
@@ -34,8 +34,8 @@ class SettingsView extends StatelessWidget {
           children: [
             SvgPicture.asset(
               svgIconPath,
-              width: FetchPixels.getPixelWidth(20),
-              height: FetchPixels.getPixelHeight(20),
+              width: FetchPixels.getPixelWidth(18),
+              height: FetchPixels.getPixelHeight(18),
               colorFilter: ColorFilter.mode(
                 iconColor ?? R.colors.primaryColor,
                 BlendMode.srcIn,
@@ -61,6 +61,7 @@ class SettingsView extends StatelessWidget {
               ),
               getHorSpace(8),
             ],
+
             if (showChevron)
               SvgPicture.asset(
                 R.icons.forwardArrowIcon,
@@ -89,7 +90,7 @@ class SettingsView extends StatelessWidget {
               left: FetchPixels.getPixelWidth(20),
               bottom: FetchPixels.getPixelHeight(10),
             ),
-            child: MyAppBar1(titleText: "Settings", titleFontSize: 19),
+            child: MyAppBar1(titleText: "Account settings", titleFontSize: 19),
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -101,35 +102,23 @@ class SettingsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildSettingTile(
-                    svgIconPath: R.icons.colorPaletteIcon,
-                    title: "Theme",
-                    value: "Light",
-                    onTap: () {},
-                  ),
-                  _buildSettingTile(
-                    svgIconPath: R.icons.currencyChangeIcon,
-                    title: "Currency",
-                    value: "\$USD",
-                    onTap: () {},
-                  ),
-                  _buildSettingTile(
-                    svgIconPath: R.icons.clockIcon,
-                    title: "Time format",
-                    value: "DD/MM/YYYY",
-                    onTap: () {},
-                  ),
-                  _buildSettingTile(
-                    svgIconPath: R.icons.accountSettingsIcon,
-                    title: "Account settings",
+                    svgIconPath: R.icons.profileIcon1,
+                    title: "Edit Profile",
                     showChevron: true,
                     onTap: () {
-                      Constant.navigateToRoute(context, Routes.accountSettings);
+                      Constant.navigateToRoute(context, Routes.editProfile);
                     },
+                  ),
+                  _buildSettingTile(
+                    svgIconPath: R.icons.passwordIcon,
+                    title: "Change Password",
+                    showChevron: true,
+                    onTap: () {},
                   ),
                   getVerSpace(15),
                   _buildSettingTile(
-                    svgIconPath: R.icons.logoutIcon,
-                    title: "Logout",
+                    svgIconPath: R.icons.deleteIcon,
+                    title: "Delete Account",
                     iconColor: R.colors.redColor,
                     titleColor: R.colors.redColor,
                     onTap: () {},

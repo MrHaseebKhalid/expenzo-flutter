@@ -1,0 +1,21 @@
+# Dependency directories
+node_modules/
+vendor/
+.pnp/
+
+# Build artifacts and temporary files
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+*.log
+
+# Sensitive information
+.env
+.env.*
+
+# Large assets (optional, but recommended)
+public/assets/
+public/images/
