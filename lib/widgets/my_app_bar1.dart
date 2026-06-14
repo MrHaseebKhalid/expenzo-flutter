@@ -1,5 +1,5 @@
-import "package:expenzo/base/resizer/constant.dart";
-import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/base/constant.dart";
+import "package:expenzo/base/widget_utils.dart";
 import "package:expenzo/widgets/my_back_button.dart";
 import "package:flutter/material.dart";
 
@@ -26,13 +26,14 @@ class MyAppBar1 extends StatelessWidget {
               },
             ),
             getHorSpace(20),
-            if(titleText != null) simpleText(titleText!,
-            style: R.textStyle.boldInter().copyWith(
-              color: R.colors.primaryColor,
-              fontSize: titleFontSize ?? 18,
-              
-            ),
-            ),
+            if (titleText != null)
+              simpleText(
+                titleText!,
+                style: R.textStyle.boldInter().copyWith(
+                  color: R.colors.primaryColor,
+                  fontSize: titleFontSize ?? 18,
+                ),
+              ),
           ],
         ),
       ],

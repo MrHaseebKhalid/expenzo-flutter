@@ -1,29 +1,29 @@
-import 'package:expenzo/screens/app/app_view.dart';
-import 'package:expenzo/screens/app/other_screens/account_settings_view.dart';
-import 'package:expenzo/screens/app/other_screens/add_expense_screen.dart';
-import 'package:expenzo/screens/app/other_screens/add_reminder_view.dart';
-import 'package:expenzo/screens/app/other_screens/edit_profile_view.dart';
-import 'package:expenzo/screens/app/profile/account_details_view.dart';
-import 'package:expenzo/screens/app/profile/personal_info_view.dart';
-import 'package:expenzo/screens/app/other_screens/budget_details_view.dart';
-import 'package:expenzo/screens/app/other_screens/expense_details_view.dart';
-import 'package:expenzo/screens/app/other_screens/expense_history_view.dart';
-import 'package:expenzo/screens/app/other_screens/faqs_screen.dart';
-import 'package:expenzo/screens/app/other_screens/notifications_view.dart';
-import 'package:expenzo/screens/app/other_screens/reminder_detail_view.dart';
-import 'package:expenzo/screens/app/other_screens/reminder_view.dart';
-import 'package:expenzo/screens/app/other_screens/settings_view.dart';
-import 'package:expenzo/screens/app/other_screens/transaction_detail_view.dart';
-import 'package:expenzo/screens/app/other_screens/transactions_history_view.dart';
-import 'package:expenzo/screens/auth/Sign up/sign_up.dart';
-import 'package:expenzo/screens/auth/app_starter/opener.dart';
-import 'package:expenzo/screens/auth/app_starter/splash.dart';
-import 'package:expenzo/screens/auth/initialize/initial_details.dart';
-import 'package:expenzo/screens/auth/initialize/welcome.dart';
-import 'package:expenzo/screens/auth/password_forget/enter_new_password.dart';
-import 'package:expenzo/screens/auth/password_forget/forget_password_email.dart';
-import 'package:expenzo/screens/auth/sign in/sign_in.dart';
-import 'package:expenzo/screens/widgets/set_budget.dart';
+import 'package:expenzo/screens/main_app/app_view.dart';
+import 'package:expenzo/screens/main_app/settings/account_settings_view.dart';
+import 'package:expenzo/screens/main_app/expenses/add_expense_view.dart';
+import 'package:expenzo/screens/main_app/reminders/add_reminder_view.dart';
+import 'package:expenzo/screens/main_app/profile/edit_profile_view.dart';
+import 'package:expenzo/screens/main_app/profile/account_details_view.dart';
+import 'package:expenzo/screens/main_app/profile/personal_info_view.dart';
+import 'package:expenzo/screens/main_app/budget/budget_details_view.dart';
+import 'package:expenzo/screens/main_app/expenses/expense_details_view.dart';
+import 'package:expenzo/screens/main_app/expenses/expense_history_view.dart';
+import 'package:expenzo/screens/main_app/settings/faqs_view.dart';
+import 'package:expenzo/screens/main_app/settings/notifications_view.dart';
+import 'package:expenzo/screens/main_app/reminders/reminder_detail_view.dart';
+import 'package:expenzo/screens/main_app/reminders/reminder_view.dart';
+import 'package:expenzo/screens/main_app/settings/settings_view.dart';
+import 'package:expenzo/screens/main_app/transactions/transaction_detail_view.dart';
+import 'package:expenzo/screens/main_app/transactions/transactions_history_view.dart';
+import 'package:expenzo/screens/authentication/sign_up/sign_up_view.dart';
+import 'package:expenzo/screens/authentication/app_starter/opener_view.dart';
+import 'package:expenzo/screens/authentication/app_starter/splash_view.dart';
+import 'package:expenzo/screens/authentication/onboarding/initial_details_view.dart';
+import 'package:expenzo/screens/authentication/onboarding/welcome_view.dart';
+import 'package:expenzo/screens/authentication/password_reset/enter_new_password_view.dart';
+import 'package:expenzo/screens/authentication/password_reset/forget_password_email_view.dart';
+import 'package:expenzo/screens/authentication/sign_in/sign_in_view.dart';
+import 'package:expenzo/screens/shared/widgets/set_budget_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -77,27 +77,27 @@ class AppRoutes {
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       // Auth screens
-      Routes.splash: (context) => const SplashScreen(),
-      Routes.opener: (context) => const FirstOpener(),
-      Routes.signIn: (context) => const SignIn(),
-      Routes.signUp: (context) => const SignUp(),
+      Routes.splash: (context) => const SplashView(),
+      Routes.opener: (context) => const OpenerView(),
+      Routes.signIn: (context) => const SignInView(),
+      Routes.signUp: (context) => const SignUpView(),
 
-      Routes.welcome: (context) => const Welcome(),
-      Routes.initialDetails: (context) => const InitialDetails(),
-      Routes.setBudget: (context) => const SetBudget(),
-      Routes.forgetPasswordEmail: (context) => const ForgetPasswordEmail(),
-      Routes.enterNewPassword: (context) => const EnterNewPassword(),
+      Routes.welcome: (context) => const WelcomeView(),
+      Routes.initialDetails: (context) => const InitialDetailsView(),
+      Routes.setBudget: (context) => const SetBudgetView(),
+      Routes.forgetPasswordEmail: (context) => const ForgetPasswordEmailView(),
+      Routes.enterNewPassword: (context) => const EnterNewPasswordView(),
 
       // App view
       Routes.appView: (context) => const AppView(),
 
       // Expense screens
-      Routes.addExpense: (context) => const AddExpenseScreen(),
+      Routes.addExpense: (context) => const AddExpenseView(),
       Routes.expenseHistory: (context) => const ExpenseHistoryView(),
       Routes.expenseDetails: (context) => const ExpenseDetailsView(),
 
       // Transaction screens
-      Routes.transactionHistory: (context) => const TransactionHistoryView(),
+      Routes.transactionHistory: (context) => const TransactionsHistoryView(),
       Routes.transactionDetails: (context) => const TransactionDetailView(),
 
       // Budget screens
@@ -117,7 +117,7 @@ class AppRoutes {
       Routes.notifications: (context) => const NotificationsView(),
 
       // Other screens
-      Routes.faqs: (context) => const FAQsScreen(),
+      Routes.faqs: (context) => const FAQsView(),
     };
   }
 

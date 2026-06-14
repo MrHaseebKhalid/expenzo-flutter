@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../device_util.dart";
+import "device_util.dart";
 
 class FetchPixels {
   static double mockupWidth = 390;
@@ -9,14 +9,8 @@ class FetchPixels {
   static double width = 0;
 
   FetchPixels(BuildContext context) {
-    height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
   }
 
   static double getHeightPercentSize(double percent) {

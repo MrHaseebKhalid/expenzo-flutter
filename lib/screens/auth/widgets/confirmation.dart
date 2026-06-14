@@ -1,6 +1,6 @@
-import "package:expenzo/base/resizer/constant.dart";
+import "package:expenzo/base/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
-import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/base/widget_utils.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";

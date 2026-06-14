@@ -1,4 +1,4 @@
-import 'package:expenzo/screens/app/widgets/donut_segment.dart';
+import 'package:expenzo/screens/main_app/home/widgets/donut_chart/donut_segment.dart';
 import 'package:flutter/material.dart';
 
 /// Provides expense segments for charts and summaries.

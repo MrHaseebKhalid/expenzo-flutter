@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/svg.dart";
 
-import "../base/resizer/constant.dart";
+import "../base/constant.dart";
 import "../base/resizer/fetch_pixels.dart";
-import "../base/resizer/widget_utils.dart";
+import "../base/widget_utils.dart";
 import "../resources/resources.dart";
 
 class MyListTile extends StatefulWidget {

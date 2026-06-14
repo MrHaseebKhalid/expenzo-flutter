@@ -1,6 +1,6 @@
-import "package:expenzo/base/resizer/constant.dart";
+import "package:expenzo/base/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
-import "package:expenzo/base/resizer/widget_utils.dart";
+import "package:expenzo/base/widget_utils.dart";
 import "package:expenzo/utils/routes.dart";
 import "package:flutter/material.dart";
 
