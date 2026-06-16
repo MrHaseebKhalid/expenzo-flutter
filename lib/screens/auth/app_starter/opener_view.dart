@@ -8,6 +8,7 @@ import '../../../base/widget_utils.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/my_button.dart';
 import '../../../provider/auth_provider.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class OpenerView extends StatefulWidget {
   const OpenerView({super.key});
@@ -151,6 +152,7 @@ class _OpenerViewState extends State<OpenerView> {
             MyButton(
               buttonText: "Get Started",
               onTap: () {
+                FirebaseCrashlytics.instance.crash();
                 Constant.navigateToRoute(context, Routes.signIn);
               },
             ),

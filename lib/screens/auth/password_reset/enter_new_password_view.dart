@@ -2,7 +2,7 @@ import "package:expenzo/base/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/widget_utils.dart";
 import "package:expenzo/provider/auth_provider.dart";
-import "package:expenzo/screens/authentication/widgets/confirmation.dart";
+import "package:expenzo/screens/auth/widgets/confirmation.dart";
 import "package:expenzo/utils/routes.dart";
 import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";

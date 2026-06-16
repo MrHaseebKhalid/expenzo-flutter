@@ -2,7 +2,7 @@ import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/widget_utils.dart";
 import "package:expenzo/data/expense_data.dart";
 import "package:expenzo/resources/resources.dart";
-import "package:expenzo/screens/main_app/home/widgets/donut_chart/donut_chart_pill.dart";
+import "package:expenzo/screens/main_app/home/widgets/donut_chart_pill.dart";
 import "package:expenzo/screens/main_app/home/widgets/donut_chart/donut_chart_config.dart";
 import "package:expenzo/screens/main_app/home/widgets/donut_chart/expense_donut_chart.dart";
 import "package:expenzo/widgets/my_container.dart";

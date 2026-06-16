@@ -1,8 +1,8 @@
 import "package:expenzo/base/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/widget_utils.dart";
-import "package:expenzo/screens/authentication/password_reset/enter_new_password_view.dart";
-import "package:expenzo/screens/authentication/widgets/verification.dart";
+import "package:expenzo/screens/auth/password_reset/enter_new_password_view.dart";
+import "package:expenzo/screens/auth/widgets/verification.dart";
 import "package:expenzo/widgets/my_app_bar1.dart";
 import "package:expenzo/widgets/my_button.dart";
 import "package:expenzo/widgets/my_text_field.dart";

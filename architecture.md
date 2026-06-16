@@ -25,11 +25,11 @@ expenzo/
 ├── ios/                     # iOS-specific configuration and build files
 ├── lib/                     # Main application source code
 │   ├── base/               # Base utilities and device-specific code
-│   │   ├── device_util.dart
+│   │   ├── constant.dart
+│   │   ├── widget_utils.dart
 │   │   └── resizer/        # Responsive design utilities
-│   │       ├── constant.dart
 │   │       ├── fetch_pixels.dart
-│   │       └── widget_utils.dart
+│   │       └── device_util.dart
 │   ├── data/               # Data layer and repositories
 │   │   └── expense_data.dart
 │   ├── models/             # Data models
@@ -44,6 +44,9 @@ expenzo/
 │   │   ├── reminder.dart
 │   │   ├── transaction.dart
 │   │   └── user.dart
+│   ├── provider/           # State management providers
+│   │   ├── app_provider.dart
+│   │   └── auth_provider.dart
 │   ├── resources/          # App resources (colors, themes, strings, etc.)
 │   │   ├── colors.dart
 │   │   ├── decoration.dart
@@ -55,20 +58,78 @@ expenzo/
 │   │   ├── text_style.dart
 │   │   └── themes.dart
 │   ├── screens/            # UI screens and views
-│   │   ├── app/           # Main app screens
-│   │   │   ├── analytics/
-│   │   │   ├── dashboard/
-│   │   │   ├── overview/
-│   │   │   ├── profile/
-│   │   │   ├── other_screens/
-│   │   │   ├── provider/   # State management providers
-│   │   │   └── widgets/    # Reusable app widgets
 │   │   ├── auth/          # Authentication screens
-│   │   ├── widgets/       # Reusable screen widgets
-│   │   └── app_view.dart
-│   ├── services/          # Business logic and external services
+│   │   │   ├── app_starter/
+│   │   │   │   ├── splash_view.dart
+│   │   │   │   └── opener_view.dart
+│   │   │   ├── onboarding/
+│   │   │   │   ├── initial_details_view.dart
+│   │   │   │   └── welcome_view.dart
+│   │   │   ├── password_reset/
+│   │   │   │   ├── enter_new_password_view.dart
+│   │   │   │   └── forget_password_email_view.dart
+│   │   │   ├── sign_in/
+│   │   │   │   └── sign_in_view.dart
+│   │   │   ├── sign_up/
+│   │   │   │   └── sign_up_view.dart
+│   │   │   └── widgets/
+│   │   │       ├── confirmation.dart
+│   │   │       └── verification.dart
+│   │   ├── main_app/      # Main application screens
+│   │   │   ├── analytics/
+│   │   │   │   └── analytics_view.dart
+│   │   │   ├── budget/
+│   │   │   │   └── budget_details_view.dart
+│   │   │   ├── dashboard/
+│   │   │   │   └── dashboard_view.dart
+│   │   │   ├── expenses/
+│   │   │   │   ├── add_expense_view.dart
+│   │   │   │   ├── expense_details_view.dart
+│   │   │   │   └── expense_history_view.dart
+│   │   │   ├── home/
+│   │   │   │   ├── overview_view.dart
+│   │   │   │   └── widgets/
+│   │   │   │       ├── donut_chart/
+│   │   │   │       │   ├── donut_chart_config.dart
+│   │   │   │       │   ├── donut_segment.dart
+│   │   │   │       │   ├── donut_segment_path_builder.dart
+│   │   │   │       │   ├── expense_donut_chart.dart
+│   │   │   │       │   └── expense_donut_chart_painter.dart
+│   │   │   │       └── donut_chart_pill.dart
+│   │   │   ├── profile/
+│   │   │   │   ├── account_details_view.dart
+│   │   │   │   ├── edit_profile_view.dart
+│   │   │   │   ├── personal_info_view.dart
+│   │   │   │   └── profile_view.dart
+│   │   │   ├── reminders/
+│   │   │   │   ├── add_reminder_view.dart
+│   │   │   │   ├── reminder_detail_view.dart
+│   │   │   │   └── reminder_view.dart
+│   │   │   ├── settings/
+│   │   │   │   ├── account_settings_view.dart
+│   │   │   │   ├── faqs_view.dart
+│   │   │   │   ├── notifications_view.dart
+│   │   │   │   └── settings_view.dart
+│   │   │   ├── transactions/
+│   │   │   │   ├── transaction_detail_view.dart
+│   │   │   │   └── transactions_history_view.dart
+│   │   │   ├── widgets/
+│   │   │   │   ├── bottom_app_bar.dart
+│   │   │   │   ├── floating_action_button.dart
+│   │   │   │   └── semi_circle.dart
+│   │   │   └── app_view.dart
+│   │   └── shared/        # Shared widgets across screens
+│   │       └── widgets/
+│   │           ├── set_budget_view.dart
+│   │           └── sub_category_box.dart
 │   ├── utils/             # Utility functions and helpers
+│   │   └── routes.dart
 │   ├── widgets/           # Global reusable widgets
+│   │   ├── my_app_bar1.dart
+│   │   ├── my_app_bar2.dart
+│   │   ├── my_button.dart
+│   │   ├── my_container.dart
+│   │   └── my_text_field.dart
 │   └── main.dart          # App entry point
 ├── assets/                # Static assets
 │   ├── fonts/            # Custom fonts (Inter family)
@@ -77,7 +138,7 @@ expenzo/
 ├── test/                  # Test files
 ├── .gitignore             # Git ignore patterns
 ├── .windsurfignore        # Windsurf/IDE ignore patterns
-├── .windsurfrules         # Windsurf/IDE rules (currently empty)
+├── .windsurfrules         # Windsurf/IDE rules
 ├── pubspec.yaml           # Flutter dependencies and configuration
 └── README.md              # Project documentation
 ```
@@ -88,14 +149,16 @@ expenzo/
 
 ### State Management
 The application uses the **Provider pattern** for state management:
-- **AuthProvider**: Manages authentication state and user sessions
-- **AppProvider**: Manages app-level state (e.g., current page index, navigation)
+- **AuthProvider** (lib/provider/auth_provider.dart): Manages authentication state and user sessions
+- **AppProvider** (lib/provider/app_provider.dart): Manages app-level state (e.g., current page index, navigation)
 - Providers are initialized in `main.dart` using `MultiProvider`
 
 ### Navigation
 - Uses named routes defined in `utils/routes.dart`
 - Initial route: `Routes.splash`
 - Navigation managed through `MaterialApp` routes
+- Authentication routes: splash, opener, signIn, signUp, forgetPasswordEmail, enterNewPassword, initialDetails, welcome
+- Main app routes: overview, dashboard, analytics, profile, and various feature-specific routes
 
 ### Responsive Design
 - Custom resizer utilities in `base/resizer/` for responsive UI
@@ -191,14 +254,16 @@ Standard Flutter gitignore patterns for:
 ## Coding Standards and Conventions
 
 ### File Organization
-- **Feature-based structure**: Screens organized by feature (analytics, dashboard, profile, etc.)
-- **Separation of concerns**: Models, resources, screens, and utilities are separated
-- **Provider pattern**: State management isolated in provider classes
-- **Reusable components**: Common widgets in dedicated widgets directories
+- **Feature-based structure**: Screens organized by feature (auth, main_app with sub-features like analytics, dashboard, profile, etc.)
+- **Separation of concerns**: Models, resources, screens, providers, and utilities are separated
+- **Provider pattern**: State management isolated in lib/provider/ directory
+- **Reusable components**: Common widgets in dedicated widgets directories (global widgets in lib/widgets/, feature-specific in screens/*/widgets/)
+- **Data layer**: Data repositories in lib/data/
+- **Shared widgets**: Cross-screen reusable widgets in screens/shared/widgets/
 
 ### Naming Conventions
-- **Files**: snake_case (e.g., `account_details_view.dart`)
-- **Classes**: PascalCase (e.g., `AppProvider`, `MyApp`)
+- **Files**: snake_case with _view.dart suffix for screens (e.g., `account_details_view.dart`, `dashboard_view.dart`)
+- **Classes**: PascalCase matching file names (e.g., `AccountDetailsView`, `DashboardView`)
 - **Variables/Methods**: camelCase (e.g., `currentPageIndex`, `update()`)
 - **Constants**: UPPER_SNAKE_CASE (inferred from pattern)
 
@@ -236,13 +301,41 @@ Standard Flutter gitignore patterns for:
 - **Filter**: Filtering options for data views
 
 ### Screens
-- **Splash**: App launch screen
-- **Auth**: Authentication flows (login, signup, etc.)
-- **Dashboard**: Main dashboard view
-- **Overview**: Financial overview
-- **Analytics**: Detailed analytics and charts
-- **Profile**: User profile management
-- **Settings**: App settings and preferences
+**Authentication (screens/auth/)**
+- **SplashView**: App launch screen (app_starter/splash_view.dart)
+- **OpenerView**: Onboarding introduction (app_starter/opener_view.dart)
+- **SignInView**: User login screen (sign_in/sign_in_view.dart)
+- **SignUpView**: User registration screen (sign_up/sign_up_view.dart)
+- **InitialDetailsView**: Initial user details collection (onboarding/initial_details_view.dart)
+- **WelcomeView**: Welcome screen (onboarding/welcome_view.dart)
+- **ForgetPasswordEmailView**: Password reset email input (password_reset/forget_password_email_view.dart)
+- **EnterNewPasswordView**: New password entry (password_reset/enter_new_password_view.dart)
+
+**Main App (screens/main_app/)**
+- **AppView**: Main app container with bottom navigation (app_view.dart)
+- **OverviewView**: Financial overview with donut chart (home/overview_view.dart)
+- **DashboardView**: Main dashboard view (dashboard/dashboard_view.dart)
+- **AnalyticsView**: Detailed analytics and charts (analytics/analytics_view.dart)
+- **ProfileView**: User profile management (profile/profile_view.dart)
+- **AccountDetailsView**: Account details screen (profile/account_details_view.dart)
+- **EditProfileView**: Profile editing screen (profile/edit_profile_view.dart)
+- **PersonalInfoView**: Personal information screen (profile/personal_info_view.dart)
+- **SettingsView**: App settings and preferences (settings/settings_view.dart)
+- **AccountSettingsView**: Account-specific settings (settings/account_settings_view.dart)
+- **FAQsView**: Frequently asked questions (settings/faqs_view.dart)
+- **NotificationsView**: Notification settings (settings/notifications_view.dart)
+- **AddExpenseView**: Add new expense (expenses/add_expense_view.dart)
+- **ExpenseDetailsView**: Expense details (expenses/expense_details_view.dart)
+- **ExpenseHistoryView**: Expense history (expenses/expense_history_view.dart)
+- **BudgetDetailsView**: Budget details (budget/budget_details_view.dart)
+- **TransactionsHistoryView**: Transaction history (transactions/transactions_history_view.dart)
+- **TransactionDetailView**: Transaction details (transactions/transaction_detail_view.dart)
+- **ReminderView**: Reminders list (reminders/reminder_view.dart)
+- **AddReminderView**: Add new reminder (reminders/add_reminder_view.dart)
+- **ReminderDetailView**: Reminder details (reminders/reminder_detail_view.dart)
+
+**Shared (screens/shared/)**
+- **SetBudgetView**: Budget setup widget (shared/widgets/set_budget_view.dart)
 
 ---
 
@@ -340,7 +433,7 @@ flutter pub upgrade
 
 - **Current Version**: 1.0.0+1
 - **Flutter SDK**: ^3.9.0
-- **Last Updated**: June 2026
+- **Last Updated**: June 14, 2026
 
 ---
 

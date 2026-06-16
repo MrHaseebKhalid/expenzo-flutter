@@ -1,11 +1,21 @@
 import 'package:expenzo/resources/resources.dart';
 import 'package:expenzo/provider/app_provider.dart';
 import 'package:expenzo/provider/auth_provider.dart';
+import 'package:expenzo/services/firebase_service.dart';
+import 'package:expenzo/services/hive_service.dart';
 import 'package:expenzo/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Hive
+  await HiveService.initialize();
+
+  // Initialize Firebase
+  await FirebaseService.initialize();
+
   runApp(
     MultiProvider(
       providers: [
