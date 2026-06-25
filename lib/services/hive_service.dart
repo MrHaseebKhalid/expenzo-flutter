@@ -1,5 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../models/adapters/expense_adapter.dart';
+import '../models/adapters/budget_adapter.dart';
+import '../models/adapters/transaction_adapter.dart';
+import '../models/adapters/reminder_adapter.dart';
 
 /// Hive Service
 ///
@@ -28,13 +32,12 @@ class HiveService {
       // Initialize Hive
       await Hive.initFlutter();
 
-      // Register TypeAdapters here when models are created
-      // Hive.registerAdapter(ExpenseAdapter());
-      // Hive.registerAdapter(BudgetAdapter());
-      // Hive.registerAdapter(TransactionAdapter());
-      // Hive.registerAdapter(CategoryAdapter());
-      // Hive.registerAdapter(ReminderAdapter());
-      // Hive.registerAdapter(UserAdapter());
+      // Register TypeAdapters
+      Hive.registerAdapter(HiveExpenseAdapter());
+      Hive.registerAdapter(HiveBudgetAdapter());
+      Hive.registerAdapter(HiveBudgetCategoryAdapter());
+      Hive.registerAdapter(HiveTransactionAdapter());
+      Hive.registerAdapter(HiveReminderAdapter());
 
       // Open boxes
       await Hive.openBox(expensesBox);

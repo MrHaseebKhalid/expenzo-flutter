@@ -53,9 +53,22 @@ class FirebaseService {
       };
 
       debugPrint('Firebase initialized successfully');
+      debugPrint(
+        'Note: App Check warnings can be ignored for MVP. Configure firebase_app_check for production security.',
+      );
     } catch (e) {
       debugPrint('Firebase initialization failed: $e');
       rethrow;
+    }
+  }
+
+  /// Dispose Firebase service and clean up resources
+  static void dispose() {
+    if (_instance != null) {
+      // Reset global error handlers to prevent memory leaks
+      FlutterError.onError = null;
+      PlatformDispatcher.instance.onError = null;
+      _instance = null;
     }
   }
 

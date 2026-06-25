@@ -22,6 +22,7 @@ class MyTextField extends StatelessWidget {
   final TextEditingController? controller;
   final BuildContext context;
   final FormFieldValidator<String> validator;
+  final Iterable<String>? autofillHints;
 
   const MyTextField({
     super.key,
@@ -40,6 +41,7 @@ class MyTextField extends StatelessWidget {
     this.controller,
     required this.context,
     required this.validator,
+    this.autofillHints,
   });
 
   @override
@@ -87,6 +89,7 @@ class MyTextField extends StatelessWidget {
             controller: controller,
             maxLines: 1,
             obscureText: eyeIconBool,
+            autofillHints: autofillHints,
 
             textAlign: TextAlign.start,
             validator: validator,

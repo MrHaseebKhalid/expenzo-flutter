@@ -1,8 +1,10 @@
 import "package:expenzo/base/constant.dart";
 import "package:expenzo/base/resizer/fetch_pixels.dart";
 import "package:expenzo/base/widget_utils.dart";
+import "package:expenzo/provider/auth_provider.dart";
 import "package:expenzo/utils/routes.dart";
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
 import "../../../resources/resources.dart";
 
@@ -16,12 +18,24 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3), () {
-      if (mounted) {
-        Constant.navigateToRoute(context, Routes.opener);
-      }
-    });
     super.initState();
+    _checkAuthAndNavigate();
+  }
+
+  Future<void> _checkAuthAndNavigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (!mounted) return;
+
+    final authProvider = context.read<AuthProvider>();
+
+    if (authProvider.isAuthenticated) {
+      // User is logged in, navigate to main app
+      Constant.navigateToRoute(context, Routes.appView);
+    } else {
+      // User is not logged in, navigate to opener
+      Constant.navigateToRoute(context, Routes.opener);
+    }
   }
 
   @override
